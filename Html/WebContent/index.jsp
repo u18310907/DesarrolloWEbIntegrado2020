@@ -17,7 +17,7 @@ Password: <input type="password" name="password" value="alex"><br>
 Campo Oculto: <input type="hidden" name="oculto" value="alex"><br>
 </p>
 <br>
-<table style="border:dotted">
+<table style="border:dotted" border="1">
 <thead>
 <tr>
 <th>Nombre</th>

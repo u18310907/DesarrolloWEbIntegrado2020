@@ -16,7 +16,8 @@ Usuario: <input type="text" name="usuario" value="alex"><br>
 Password: <input type="password" name="password" value="alex"><br>
 Campo Oculto: <input type="hidden" name="oculto" value="alex"><br>
 </p>
-<table>
+<br>
+<table style="border:dotted">
 <thead>
 <tr>
 <th>Nombre</th>

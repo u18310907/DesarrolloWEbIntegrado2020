@@ -24,29 +24,29 @@
               <form>
                 <div class="top-wrapper">
                   <div class="input">
-                    <label>Name</label>
-                    <input type="text" name="name"/>
+                    <label>Nombre</label>
+                    <input type="text" name="Nombre"/>
                   </div>
                   <div class="input">
-                    <label>Phone</label>
-                    <input type="text" name="phone"/>
+                    <label>Celular</label>
+                    <input type="text" name="Celular"/>
                   </div>
                   <div class="input">
                     <label>Email</label>
-                    <input type="text" name="_replyto"/>
+                    <input type="text" name="Email"/>
                   </div>
                 </div>
                 <div class="bottom-wrapper">
                   <div class="input">
-                    <label>Subject</label>
-                    <input type="text" name="_subject"/>
+                    <label>Correo</label>
+                    <input type="text" name="Correo"/>
                   </div>
                   <div class="input">
-                    <label>Message</label>
-                    <textarea rows="5" name="message"></textarea>
+                    <label>Mensaje</label>
+                    <textarea rows="5" name="Mensaje"></textarea>
                   </div>
                   <div class="submit">
-                    <div class="submit-card" on-click="toggle('flipCard')">Send Mail</div>
+                    <div class="submit-card" on-click="toggle('flipCard')">Enviar Correo</div>
                   </div>
                 </div>
               </form>

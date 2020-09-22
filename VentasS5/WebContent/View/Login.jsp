@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta charset="ISO-8859-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Log in</title>
+<title>Ventas Online</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -32,12 +32,12 @@
 	<div id="app">
 		<div class="login-box">
 			<div class="login-logo">
-				<a href="../../index2.html"><b>Admin</b>LTE</a>
+				<a href="Login.jsp"><b>Ventas</b>Online</a>
 			</div>
 			<!-- /.login-logo -->
 			<div class="card">
 				<div class="card-body login-card-body">
-					<p class="login-box-msg">Sign in to start your session</p>
+					<p class="login-box-msg">Iniciar Session</p>
 
 					<div class="form">
 						<div class="input-group mb-3">
@@ -58,35 +58,20 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-8">
-								<div class="icheck-primary">
-									<input type="checkbox" id="remember"> <label
-										for="remember"> Remember Me </label>
-								</div>
+						
+							<div class="col-6">
+								<a href="RegistrarUsuario.jsp"type="submit" class="btn btn-info btn-block" >Registrarse</a>
 							</div>
+			
 							<!-- /.col -->
-							<div class="col-4">
-								<button type="submit" class="btn btn-primary btn-block"  @click="login">Sign
-									In</button>
+							<div class="col-6">
+								<button type="submit" class="btn btn-success btn-block"  @click="login">Login</button>
 							</div>
 							<!-- /.col -->
 						</div>
 					</div>
 
-					<div class="col-md-6">
-					<form action="Controlador" >
-					<button>Enviar Datos</button>
-					 <a href="../Controlador?accion=listar">Regresar</a>
-					</form>
-					</div>
-
-					<p class="mb-1">
-						<a href="forgot-password.html">I forgot my password</a>
-					</p>
-					<p class="mb-0">
-						<a href="register.html" class="text-center">Register a new
-							membership</a>
-					</p>
+			
 				</div>
 				<!-- /.login-card-body -->
 			</div>
@@ -102,8 +87,7 @@
 	<script src="../Resource/dist/js/adminlte.min.js"></script>
 	<script src="../Resource/dist/js/vue.js"></script>
 	<script src="../Resource/dist/js/axios.min.js"></script>
-	<script type="text/javascript">
-		
+	<script type="text/javascript">		
 	const app=new Vue({
 		  el:'#app',
 		  data:{ 
@@ -113,20 +97,22 @@
 		    },
 		  },  methods:{
 			  
+			 
 			  login:function(){
 				 	var formdata=app.ToFormData(app.user);
 				    const options = {
 				                method: 'POST',		
-				                //headers: { 'content-type': 'application/form-data' },
+				               // headers: { 'content-type': 'application/form-data' },
 				                data: formdata,
-				                url: "../Controlador",
+				                url: "../Login",
 				            };
 				     axios(options)
 				    .then(function(response){
-				    console.log(response);
-				    }).catch(function(response) {
-				  	console.log('Noooo :(', response);
+				     console.log(response);
+				    if(response.data[0]=="success"){location.replace(response.data[1])}
+				
 				    });
+			
 				  	
 			  },
 			  	    
@@ -143,8 +129,7 @@
 		    
 		    mounted:function(){   
 		    }
-		  })
-	  
+		  })	  
 </script>
 </body>
 </html>

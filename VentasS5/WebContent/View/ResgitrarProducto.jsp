@@ -184,7 +184,7 @@
 										<div class="form-group">
 											<label for="codigo">Codigo</label> <input
 												type="text" class="form-control" v-model="Producto.codigo" id="codigo"
-												placeholder="Codigo">
+												placeholder="Codigo" readonly>
 										</div>
 										<div class="form-group">
 											<label for="nombre">Nombre</label> <input
@@ -212,7 +212,7 @@
 										<div class="form-group">
 											<label for="unidad">Unidad</label> <input
 												type="text" class="form-control" v-model="Producto.unidad"
-												id="unidad" placeholder="0">
+												id="unidad" placeholder="Cja/Paq/Uni">
 										</div>
 										<div class="form-group">
 											<label for="precio">Precio</label> <input

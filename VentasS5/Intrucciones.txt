@@ -1,0 +1,3 @@
+Posible Error con la libreria Gson
+
+Corregir los Marcadores ->Imagen "CorrecionMarcadores.png"

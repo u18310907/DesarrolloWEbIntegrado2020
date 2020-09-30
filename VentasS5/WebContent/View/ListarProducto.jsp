@@ -3,6 +3,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,7 +142,19 @@
 							</a></li>
 							<li class="nav-item"><a href="../View/ListarProducto.jsp?c=verduras" class="nav-link"> <i
 									class="far fa-circle nav-icon"></i>
-									<p>Verduras v3</p>
+									<p>Verduras</p>
+							</a></li>
+							<li class="nav-item"><a href="../View/ListarProducto.jsp?c=dulces" class="nav-link"> <i
+									class="far fa-circle nav-icon"></i>
+									<p>Dulces</p>
+							</a></li>
+								<li class="nav-item"><a href="../View/ListarProducto.jsp?c=lacteos" class="nav-link"> <i
+									class="far fa-circle nav-icon"></i>
+									<p>Lacteos</p>
+							</a></li>
+							<li class="nav-item"><a href="../View/ListarProducto.jsp?c=Pan" class="nav-link"> <i
+									class="far fa-circle nav-icon"></i>
+									<p>Pan</p>
 							</a></li>
 						</ul></li>
 					</ul>
@@ -296,6 +309,18 @@
 					    });							  	
 				  },
 				  
+				  ValidarSessiones:function(){
+					    const options = {
+					                method: 'POST',		
+					                url: "../ValidarSession",
+					            };
+					     axios(options)
+					    .then(function(response){
+					     console.log(response);
+					    if(response.data[0]=="Redirect"){location.replace(response.data[1])}				
+					    });							  	
+				  },
+				  
 				  VistaImagen:function(){
 					    const options = {
 					                method: 'POST',		
@@ -349,7 +374,8 @@
 			    },
 			    
 			    mounted:function(){   	
-			    	 	 this.VistaImagen();
+			    		this.ValidarSessiones();
+			    	 	this.VistaImagen();
 				        datos = $('#TableListaProductos').DataTable({
 				           responsive: true
 				        });

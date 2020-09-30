@@ -357,6 +357,17 @@
 				    
 				    });							  	
 			  },
+			  ValidarSessiones:function(){
+				    const options = {
+				                method: 'POST',		
+				                url: "../ValidarSession",
+				            };
+				     axios(options)
+				    .then(function(response){
+				     console.log(response);
+				    if(response.data[0]=="Redirect"){location.replace(response.data[1])}				
+				    });							  	
+			  },
 
 			  VistaImagen:function(){
 			    const options = {
@@ -384,6 +395,7 @@
 			    },			    				 
 		    },		    
 		    mounted:function(){   
+		    	 this.ValidarSessiones();
 		    	this.VistaImagen();
 		    	   this.BuscarUsuario();	
 		    

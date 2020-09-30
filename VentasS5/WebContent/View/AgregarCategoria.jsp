@@ -291,6 +291,17 @@
 				        app.UserVista.ruta=app.UserVista.imgurl+app.ImageVista.img;			
 				    });							  	
 			  },
+			  ValidarSessiones:function(){
+				    const options = {
+				                method: 'POST',		
+				                url: "../ValidarSession",
+				            };
+				     axios(options)
+				    .then(function(response){
+				     console.log(response);
+				    if(response.data[0]=="Redirect"){location.replace(response.data[1])}				
+				    });							  	
+			  },
 			  AgregarCategoria:function(){
 				 	var formdata=app.ToFormData(app.Categoria);
 				    const options = {
@@ -317,6 +328,7 @@
 				 
 		    },		    
 		    mounted:function(){  
+		    	this.ValidarSessiones();
 		    	this.VistaImagen();
 		    }
 		  })	  

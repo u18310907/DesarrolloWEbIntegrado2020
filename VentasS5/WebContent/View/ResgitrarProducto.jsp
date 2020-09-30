@@ -322,6 +322,17 @@
 				    if(response.data[0]=="success"){location.replace(response.data[1])}				
 				    });							  	
 			  },
+			  ValidarSessiones:function(){
+				    const options = {
+				                method: 'POST',		
+				                url: "../ValidarSession",
+				            };
+				     axios(options)
+				    .then(function(response){
+				     console.log(response);
+				    if(response.data[0]=="Redirect"){location.replace(response.data[1])}				
+				    });							  	
+			  },
 			  AgregarProducto:function(){
 				 	var __CategoriaSelected = $("#categoria option:selected").val(); 
 				 	var formdata=app.ToFormData(app.Producto,__CategoriaSelected);
@@ -376,7 +387,8 @@
 			        return formdata;       
 			    },			    				 
 		    },		    
-		    mounted:function(){   		    	
+		    mounted:function(){ 
+		    	this.ValidarSessiones();
 		    	this.VistaImagen();
 		    	this.CategoriaLista();
 		    }

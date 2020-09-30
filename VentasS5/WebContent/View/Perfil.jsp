@@ -372,7 +372,18 @@
 				        app.InformacionImg.ruta=app.InformacionImg.imgurl+app.InformacionVal.img;
 				    	console.log(response);   
 				    });							  	
-			  },			  	    
+			  },
+			  ValidarSessiones:function(){
+				    const options = {
+				                method: 'POST',		
+				                url: "../ValidarSession",
+				            };
+				     axios(options)
+				    .then(function(response){
+				     console.log(response);
+				    if(response.data[0]=="Redirect"){location.replace(response.data[1])}				
+				    });							  	
+			  },
 			    ToFormData:function(obj){
 			        var formdata = new FormData();
 			        for(var key in obj){
@@ -382,6 +393,7 @@
 			    },			    				 
 		    },		    
 		    mounted:function(){ 
+		    	this.ValidarSessiones();
 		    		this.VistaImagen();
 		    	   this.InformacionUser();	
 		    	   this.Anuncios();

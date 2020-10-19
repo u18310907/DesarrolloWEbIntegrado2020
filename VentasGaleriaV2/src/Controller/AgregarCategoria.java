@@ -56,10 +56,10 @@ public class AgregarCategoria extends HttpServlet {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
 		String fecha = dtf.format(now);
-		String titulo = request.getParameter("titulo");
-		String descripcion = request.getParameter("descripcion");
-		String urlFull = request.getParameter("urlFull");
-		String urlThumb = request.getParameter("urlFull");
+		String titulo = request.getParameter("tituloA");
+		String descripcion = request.getParameter("descripcionA");
+		String urlFull = request.getParameter("urlFullA");
+		String urlThumb = request.getParameter("urlFullA");
 
 		UploadImagen upload = new UploadImagen();
 		Part filePart = request.getPart("foto");

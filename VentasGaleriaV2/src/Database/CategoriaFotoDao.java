@@ -35,6 +35,23 @@ public class CategoriaFotoDao {
 		return new Gson().toJson(listOfMaps);
 	}
 
+	public static String ConsultarListabyid(int id) {
+		Conexion con = new Conexion();
+		Connection connection = con.conectar();
+		String query = "SELECT * FROM categoria_fotos where codigo="+id+" ";
+		List<Map<String, Object>> listOfMaps = null;
+		try {
+			QueryRunner queryRunner = new QueryRunner();
+			listOfMaps = queryRunner.query(connection, query, new MapListHandler());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("No se puedo Ejecutar la Consulta.", se);
+		} finally {
+			DbUtils.closeQuietly(connection);
+		}
+		return new Gson().toJson(listOfMaps);
+	}
+	
 	public String RutasListar() {
 		
 		List<String> listOfMaps =new ArrayList<String>();

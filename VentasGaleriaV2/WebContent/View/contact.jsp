@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="../Resources/css/style.css">
 
 <link rel="stylesheet" href="../Resources/fileinput/fileinput.css">
+<link rel="stylesheet" href="../Resources/css/SelectBox.css">
 
 </head>
 <body>
@@ -81,17 +82,53 @@
 			<main class="main-content">
 				<div class="container-fluid photos">
 					<div class="row justify-content-center">
-
 						<div class="col-md-6 pt-4" data-aos="fade-up">
-							<h2 class="text-white mb-4">Agregar Foto</h2>
+							<h2 class="text-white mb-4">Seleccione la Accion a Realizar</h2>
 
 							<div class="row">
 								<div class="col-md-12">
 									<p class="mb-5">
-										En este recuadro se podra agregar <a href="#">Las Categorias de las Fotos </a> asi
-										como sus descripciones correspondientes
+										En este menu podra <a href="#">Agregar Album </a>, <a href="#">Modificar
+											Album </a>, <a href="#">Modificar Foto </a>
 									</p>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="row form-group">
 
+												<div class="col-md-12 mb-12 mb-md-12">
+													<div class="form-group">
+														<label class="text-white" for="Accionfor">Acciones</label>
+														<select class="form-control custom-select" id="Accionfor"
+															v-on:change="CallForm()">
+															<option value="0">--Seleccione--</option>
+															<option value="1">Agregar Album</option>
+															<option value="2">Modificar Album</option>
+															<option value="3">Modificar Foto</option>
+															<!--    <option v-for="(site,index) in sites" :key="index" :value="site.SITE_Id" :selected="site.SITE_Id == trabajadorSELECT.SITE_Id?'selected' : ''">{{site.SITE_Nombre}}-->
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="row justify-content-center" v-show="Callfrm === '1'">
+						<div class="col-md-6 pt-4" data-aos="fade-up">
+							<h2 class="text-white mb-4">Agregar Categoria de la Foto</h2>
+
+							<div class="row">
+								<div class="col-md-12">
+									<p class="mb-5">
+										En este recuadro se podra agregar <a href="#">Las
+											Categorias de las Fotos </a> asi como sus descripciones
+										correspondientes
+									</p>
 
 									<div class="row">
 										<div class="col-md-12">
@@ -100,19 +137,19 @@
 												<div class="col-md-12 mb-12 mb-md-12">
 													<label class="text-white" for="titulo">Titulo</label> <input
 														type="text" id=titulo name="titulo"
-														v-model="Categoria.titulo" class="form-control">
+														v-model="Categoria.tituloA" class="form-control">
 												</div>
 												<div class="col-md-12">
 													<label class="text-white" for="descripcion">Descripcion</label>
 													<input type="text" id="descripcion" name="descripcion"
-														v-model="Categoria.descripcion" class="form-control">
+														v-model="Categoria.descripcionA" class="form-control">
 												</div>
 											</div>
 											<div class="row form-group">
 												<div class="col-md-12">
 													<label class="text-white" for="urlFull">Nombre
 														Imagen</label> <input type="text" id="urlFull" name="urlFull"
-														class="form-control" v-model="Categoria.urlFull">
+														class="form-control" v-model="Categoria.urlFullA">
 												</div>
 											</div>
 
@@ -146,47 +183,147 @@
 							</div>
 
 						</div>
+					</div>
 
-						<div class="row justify-content-center">
-							<div  id="success_tic" class="modal fade" role="dialog" ref="success_tic" >
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content">
-										<a class="close" href="#" data-dismiss="modal">&times;</a>
-										<div class="page-body">
-											<div class="head">
-												<h3 style="margin-top: 5px;">Registro</h3>
-												<h4>El Registro fue Guardado Correctamente</h4>
+					<div class="row justify-content-center" v-show="Callfrm === '2'">
+						<div class="col-md-6 pt-4" data-aos="fade-up">
+							<h2 class="text-white mb-4">Modificar datos de Categoria de
+								la Foto</h2>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row form-group">
+
+										<div class="col-md-12 mb-12 mb-md-12">
+											<div class="form-group">
+												<label class="text-white" for="catid">Listado de
+													Categorias</label> <select class="form-control custom-select"
+													id="catid" v-on:change="getDatabycat()">
+													<option value="0">--Seleccione--</option>
+													<option v-for="(cats,index) in Cat" :key="index"
+														:value="cats.codigo">{{cats.descripcion}}</option>
+												</select>
 											</div>
-
-											<h1 style="text-align: center;">
-												<div class="checkmark-circle">
-													<div class="background"></div>
-													<div class="checkmark draw"></div>
-												</div>
-												<h1>
 										</div>
 									</div>
 								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<p class="mb-5">
+										En este recuadro se podra modificar <a href="#">Las
+											Categorias de las Fotos </a> asi como sus descripciones
+										correspondientes
+									</p>
 
+									<div class="row">
+										<div class="col-md-12">
+
+											<div class="row form-group">
+												<div class="col-md-12 mb-12 mb-md-12">
+													<label class="text-white" for="titulo">Titulo</label> <input
+														type="text" name="titulo" v-model="Categoria.Titulo"
+														class="form-control">
+												</div>
+												<div class="col-md-12">
+													<label class="text-white" for="descripcion">Descripcion</label>
+													<input type="text" name="descripcion"
+														v-model="Categoria.descripcion" class="form-control">
+												</div>
+											</div>
+
+
+
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="text-white" for="urlFull">Nombre
+														Imagen</label> <input type="text" name="urlFull"
+														class="form-control" v-model="Categoria.urlFull">
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input"
+														id="checkbox" v-model="Categoria.checked"> <label
+														for="checkbox" class="custom-control-label">Desea
+														Agregar otra Imagen </label>
+												</div>
+											</div>
+
+											<div class="row form-group" v-show="Categoria.checked">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="text-white" for="foto2">Foto</label>
+														<div class="col-md-12">
+															<input id="foto2" name="foto2" class="file" type="file">
+														</div>
+														<div class="col-md-12">
+															<div id="errorBlock" class="help-block"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<a class="btn btn-primary btn-md text-white"
+														@click="ActualizarCategoria()">Agregar Imagen</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="row justify-content-center">
-							<div class="col-md-12 text-center py-5">
-								<p>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-									Copyright &copy;
-									<script>
-										document
-												.write(new Date().getFullYear());
-									</script>
-									Todos los derechos Reservados| Desarrollado por  by <a
-										href="https://portalestudiante01.utp.edu.pe/" target="_blank">Alex Palli</a>
-									<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								</p>
-							</div>
+
 						</div>
 					</div>
+
+
+
+
+					<div class="row justify-content-center">
+						<div id="success_tic" class="modal fade" role="dialog"
+							ref="success_tic">
+							<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<a class="close" href="#" data-dismiss="modal">&times;</a>
+									<div class="page-body">
+										<div class="head">
+											<h3 style="margin-top: 5px;">Registro</h3>
+											<h4>El Registro fue Guardado Correctamente</h4>
+										</div>
+
+										<h1 style="text-align: center;">
+											<div class="checkmark-circle">
+												<div class="background"></div>
+												<div class="checkmark draw"></div>
+											</div>
+											<h1>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-md-12 text-center py-5">
+							<p>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+								Copyright &copy;
+								<script>
+									document.write(new Date().getFullYear());
+								</script>
+								Todos los derechos Reservados| Desarrollado por by <a
+									href="https://portalestudiante01.utp.edu.pe/" target="_blank">Alex
+									Palli</a>
+								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							</p>
+						</div>
+					</div>
+				</div>
 			</main>
 
 		</div>

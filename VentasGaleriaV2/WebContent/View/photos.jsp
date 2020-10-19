@@ -24,7 +24,6 @@
 
     <link rel="stylesheet" href="../Resources/css/aos.css">
     <link rel="stylesheet" href="../Resources/css/fancybox.min.css">
-
     <link rel="stylesheet" href="../Resources/css/style.css">
     
   </head>

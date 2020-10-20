@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Database.CategoriaFotoDao;
+import Database.FotoDao;
 
 /**
- * Servlet implementation class ListaSelectCat
+ * Servlet implementation class AllPhotoList
  */
-@WebServlet("/ListaSelectCat")
+@WebServlet("/AllPhotoList")
 @MultipartConfig
-public class ListaSelectCat extends HttpServlet {
+public class AllPhotoList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListaSelectCat() {
+    public AllPhotoList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,15 +43,13 @@ public class ListaSelectCat extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		int id = Integer.parseInt(request.getParameter("catId"));
-		CategoriaFotoDao objCatFoto=new CategoriaFotoDao();	
-		String json = objCatFoto.ConsultarListabyid(id);
+		FotoDao objFoto=new FotoDao();	
+		String json = objFoto.ConsultarListaAll();
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		out.print(json);
-		out.flush();	
-		
+		out.flush();
 	}
 
 }

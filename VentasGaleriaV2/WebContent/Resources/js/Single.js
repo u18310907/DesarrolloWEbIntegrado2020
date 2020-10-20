@@ -9,10 +9,8 @@
 	  'allowedFileExtensions': ['jpg', 'png']
 	  }); 
 	$(document).ready(function() {	
-		
-	  LoadingImg();
-			
-	
+		Title();
+	    LoadingImg();
 	});
 		
 	
@@ -29,7 +27,7 @@
 		var id = $.urlParam('id');
 		if(id==null)
 			id=0;
-		console.log(id);
+		//console.log(id);
 	
     	$.ajax({
                	   url : '../ListarFotosV',
@@ -70,8 +68,20 @@
 	});
 	}
 	
-	function SendImg(){
+function SendImg(){
+	    $.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    if (results==null) {
+		       return null;
+		    }
+		    return decodeURI(results[1]) || 0;
+		}
+		var id = $.urlParam('id');
+		if(id==null)
+			id=0;
+			
 	var formData = new FormData(document.getElementById("FormData"));
+	formData.append('catid',id);
          $.ajax( {
           	type: 'POST',
        		url: '../RegistrarFoto',
@@ -82,6 +92,31 @@
 	     	processData: false
     }).done(function(resp){
 				 // LoadingImg();
-                  alert(resp);
+                //  alert(resp);
+			$("#success_tic").modal('show');		
+    });
+    }
+
+
+function Title(){
+	    $.urlParam = function(name){
+		    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		    if (results==null) {
+		       return null;
+		    }
+		    return decodeURI(results[1]) || 0;
+		}
+		var id = $.urlParam('id');
+		if(id==null)
+			id=0;
+         $.ajax( {
+          	   url : '../TitleCategoria',
+	           type : 'POST',
+	           data: 'id='+id,
+	           dataType : 'json',
+    }).done(function(resp){
+			//	console.log(resp[0]["descripcion"]);
+				//$('#Title h2').remove();
+				$('#Title h2').append('<h2 class="text-white mb-4" >'+resp[0]["descripcion"]+'</h2>');
     });
     }

@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-  <head>
-    <title>Galeria AMP</title>
-    <meta charset="utf-8">
+<title>Galeria AMP</title>
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
@@ -24,11 +23,12 @@
 
     <link rel="stylesheet" href="../Resources/css/aos.css">
     <link rel="stylesheet" href="../Resources/css/fancybox.min.css">
+
     <link rel="stylesheet" href="../Resources/css/style.css">
     
   </head>
   <body>
-      <div id="app">
+  
 
   <div class="site-wrap">
 
@@ -43,18 +43,17 @@
 
   <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
     <div class="site-logo">
-      <a href="photos.jsp">Galeria</a>
+      <a href="index.html">Shutter</a>
     </div>
     
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
     <div class="main-menu">
       <ul class="js-clone-nav">
-
-   						<li class="active"><a href="photos.jsp">Album</a></li>            
+    					<li><a href="photos.jsp">Album</a></li>            
 				        <li><a href="blog.jsp">Tendencias</a></li>
 				        <li><a href="contact.jsp">Servicios</a></li>
-				        <li><a href="bio.jsp">Motivacion</a></li>
+				        <li class="active"><a href="bio.jsp">Motivacion</a></li>
       </ul>
       <ul class="social js-clone-nav">
         <li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -65,23 +64,31 @@
   </header> 
   <main class="main-content">
     <div class="container-fluid photos">
-      <div class="row align-items-stretch">
-    
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up"  v-for="Element in Elements" data-aos-delay="100" >
-          <a :href="'single_Q.jsp?id='+Element.codigo" class="d-block photo-item">
-            <img :src="ImgFull+Element.urlFull" alt="{{Element.fecha}}" class="img-fluid">
-            <div class="photo-text-more">
-              <div class="photo-text-more">
-              <h3 class="heading">{{Element.Titulo}}</h3>
-              <span class="meta">{{Element.descripcion}}</span>
+      <div class="row justify-content-center">
+        
+        <div class="col-md-6 pt-4">
+          <figure class="mb-5" data-aos="fade-up">
+            <img src="../Resources/images/img_1.jpg" alt="Image" class="img-fluid">
+          </figure>
+
+          <h2 class="text-white mb-4" data-aos="fade-up">Hey There! I'm Rhea</h2>
+
+          <div class="row" data-aos="fade-up">
+            <div class="col-md-12">
+              <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit. Ipsa explicabo quasi cum, laudantium neque at veniam itaque atque <a href="#">necessitatibus</a> temporibus! Beatae sit soluta magni neque autem, suscipit dolorem, quo alias.</p>
+              <p>Similique deserunt sit accusamus ipsum optio. Quia, sapiente saepe culpa ad nemo velit, <a href="#">veritatis</a> numquam impedit voluptate quo tempore. Perferendis suscipit dolores, ducimus esse cupiditate possimus quae quis iusto rem?</p>
+              <p>Excepturi soluta maxime velit vitae tempore corporis, aliquid quidem modi libero! Optio minima esse hic repellendus a dolor perferendis dolore impedit quis et! Minus maxime itaque beatae totam eos reiciendis.</p>
+              <p class="mb-5">Ad veritatis eos dicta, animi et voluptates iusto, excepturi corporis amet, laboriosam, officiis libero. Odio excepturi aliquid suscipit nobis odit. Tenetur expedita impedit error consequatur sunt voluptatum voluptate voluptatem vitae!</p>
+
+              <p cass="mt-4">Thanks! <br> Rhea M.</p>
             </div>
-            </div>
-          </a>
-        </div>   
+          </div>
+        </div>
+
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-md-12 text-center py-5">
+       <div class="col-md-12 text-center py-5">
 							<p>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright &copy;
@@ -93,17 +100,13 @@
 									Palli</a>
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</p>
-			</div>
+						</div>
       </div>
     </div>
   </main>
 
 </div> <!-- .site-wrap -->
-</div>
 
-  <script src="../Resources/js/vue.js"></script>
-  <script src="../Resources/js/axios.min.js"></script>
-  <script src="../Resources/js/Demo.js"></script>
   <script src="../Resources/js/jquery-3.3.1.min.js"></script>
   <script src="../Resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../Resources/js/jquery-ui.js"></script>
@@ -115,8 +118,10 @@
   <script src="../Resources/js/jquery.magnific-popup.min.js"></script>
   <script src="../Resources/js/bootstrap-datepicker.min.js"></script>
   <script src="../Resources/js/aos.js"></script>
+
   <script src="../Resources/js/jquery.fancybox.min.js"></script>
+
   <script src="../Resources/js/main.js"></script>
     
   </body>
-  </html>
+</html>

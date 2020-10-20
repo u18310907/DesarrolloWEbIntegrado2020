@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta charset="utf-8">
+<title>Galeria AMP</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -55,7 +56,7 @@
 			<header class="header-bar d-flex d-lg-block align-items-center"
 				data-aos="fade-left">
 				<div class="site-logo">
-					<a href="index.html">Shutter</a>
+					<a href="photos.jsp">Galeria</a>
 				</div>
 
 				<div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3"
@@ -66,11 +67,11 @@
 
 				<div class="main-menu">
 					<ul class="js-clone-nav">
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="photos.jsp">Photos</a></li>
-						<li><a href="bio.jsp">Bio</a></li>
-						<li><a href="blog.jsp">Blog</a></li>
-						<li class="active"><a href="contact.jsp">Contact</a></li>
+	
+						<li><a href="photos.jsp">Album</a></li>            
+				        <li><a href="blog.jsp">Tendencias</a></li>
+				        <li class="active"><a href="contact.jsp">Servicios</a></li>
+				        <li><a href="bio.jsp">Motivacion</a></li>
 					</ul>
 					<ul class="social js-clone-nav">
 						<li><a href="#"><span class="icon-facebook"></span></a></li>
@@ -217,24 +218,21 @@
 									</p>
 
 									<div class="row">
-										<div class="col-md-12">
-
+										<div class="col-md-12">										
 											<div class="row form-group">
 												<div class="col-md-12 mb-12 mb-md-12">
 													<label class="text-white" for="titulo">Titulo</label> <input
 														type="text" name="titulo" v-model="Categoria.Titulo"
 														class="form-control">
 												</div>
+											</div>
+											<div class="row form-group">
 												<div class="col-md-12">
 													<label class="text-white" for="descripcion">Descripcion</label>
 													<input type="text" name="descripcion"
 														v-model="Categoria.descripcion" class="form-control">
 												</div>
 											</div>
-
-
-
-
 											<div class="row form-group">
 												<div class="col-md-12">
 													<label class="text-white" for="urlFull">Nombre
@@ -269,7 +267,96 @@
 											<div class="row form-group">
 												<div class="col-md-12">
 													<a class="btn btn-primary btn-md text-white"
-														@click="ActualizarCategoria()">Agregar Imagen</a>
+														@click="ActualizarCategoria()">Actualizar Registro</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+										
+					<div class="row justify-content-center" v-show="Callfrm === '3'">
+						<div class="col-md-6 pt-4" data-aos="fade-up">
+						<h2 class="text-white mb-4">Modificar Foto </h2>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="row form-group">
+										<div class="col-md-12 mb-12 mb-md-12">
+											<div class="form-group">
+												<label class="text-white" for="fotogd">Listado de
+													Fotos</label> <select class="form-control custom-select"
+													id="fotogd" v-on:change="getDatabyPhoto()">
+													<option value="0">--Seleccione--</option>
+													<option v-for="(photos,index) in Photo" :key="index"
+														:value="photos.codigo">{{photos.Titulo}}</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<p class="mb-5">
+										En este recuadro se podra modificar <a href="#">La
+											 las Foto </a> asi como sus descripciones
+										correspondientes
+									</p>
+
+									<div class="row">
+										<div class="col-md-12">										
+											<div class="row form-group">
+												<div class="col-md-12 mb-12 mb-md-12">
+													<label class="text-white" for="titulo">Titulo</label> <input
+														type="text" name="titulo" v-model="ImgUpdate.Titulo"
+														class="form-control">
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="text-white" for="descripcion">Descripcion</label>
+													<input type="text" name="descripcion"
+														v-model="ImgUpdate.descripcion" class="form-control">
+												</div>
+											</div>
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label class="text-white" for="urlFull">Nombre
+														Imagen</label> <input type="text" name="urlFull"
+														class="form-control" v-model="ImgUpdate.urlFull">
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input"
+														id="liked" v-model="ImgUpdate.liked"> <label
+														for="liked" class="custom-control-label">Desea
+														Agregar otra Imagen </label>
+												</div>
+											</div>
+
+											<div class="row form-group" v-show="ImgUpdate.liked">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label class="text-white" for="foto3">Foto</label>
+														<div class="col-md-12">
+															<input id="foto3" name="foto3" class="file" type="file">
+														</div>
+														<div class="col-md-12">
+															<div id="errorBlock" class="help-block"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<a class="btn btn-primary btn-md text-white"
+														@click="ActualizarFoto()">Actualizar Registro</a>
 												</div>
 											</div>
 										</div>
@@ -293,7 +380,7 @@
 									<div class="page-body">
 										<div class="head">
 											<h3 style="margin-top: 5px;">Registro</h3>
-											<h4>El Registro fue Guardado Correctamente</h4>
+											<h4>Se realizo la accion Correctamente</h4>
 										</div>
 
 										<h1 style="text-align: center;">
@@ -351,6 +438,22 @@
 
 	<script>
 		$("#foto").fileinput({
+			'showCaption' : false, // The "1 file selected non-editable text field"
+			'showRemove' : false, // The "Remove" button
+			'showUpload' : false, // The "Upload" button
+			'showBrowse' : true,
+			'allowedFileExtensions' : [ 'jpg', 'png' ]
+		});
+		
+		$("#foto2").fileinput({
+			'showCaption' : false, // The "1 file selected non-editable text field"
+			'showRemove' : false, // The "Remove" button
+			'showUpload' : false, // The "Upload" button
+			'showBrowse' : true,
+			'allowedFileExtensions' : [ 'jpg', 'png' ]
+		});
+		
+		$("#foto3").fileinput({
 			'showCaption' : false, // The "1 file selected non-editable text field"
 			'showRemove' : false, // The "Remove" button
 			'showUpload' : false, // The "Upload" button

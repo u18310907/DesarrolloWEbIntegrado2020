@@ -4,10 +4,14 @@
 		  el:'#app',
 		  data:{ 
 			    Categoria:{
-				checked: '',
+					checked: '',
+				},
+				ImgUpdate:{
+					liked: '',
 				},
 				Callfrm:'',
 				Cat:[],
+				Photo:[],
 				//modal: '#success_tic',
 		  },  methods:{				
 			  AgregarCateogria:function(){
@@ -25,6 +29,38 @@
 									  	
 			  },
 	
+			ActualizarCategoria:function(){
+				 	var formdata=app.ToFormDataT2(app.Categoria);
+					var modal=$(this.$refs.success_tic);
+				    const options = {
+				                method: 'POST',	
+  								data: formdata,
+				                url: "../ActualizarCategoriImg",
+				            };
+				     axios(options)
+				    .then(function(response){
+					console.log(response);
+							modal.modal('show');
+				    });		
+									  	
+			  },
+	
+	
+			ActualizarFoto:function(){
+				 	var formdata=app.ToFormDataT3(app.ImgUpdate);
+					var modal=$(this.$refs.success_tic);
+				    const options = {
+				                method: 'POST',	
+  								data: formdata,
+				                url: "../ActualizarPhotoDes",
+				            };
+				     axios(options)
+				    .then(function(response){
+					console.log(response);
+							modal.modal('show');
+				    });		
+									  	
+			  },
 			ListaAllCat:function(){
 				  const options = {
 				                method: 'POST',	
@@ -38,6 +74,20 @@
 				    });		
 												  	
 				},
+				
+			ListaAllFotos:function(){
+				  const options = {
+				                method: 'POST',	
+				                url: "../AllPhotoList",
+				            };
+				     axios(options)
+				    .then(function(response){
+					console.log(response);
+						app.Photo=response.data;
+						  
+				    });		
+												  	
+			 },
 	
 			 getDatabycat:function(){
 				var _currentUrl = $("#catid option:selected").val(); 	
@@ -49,6 +99,21 @@
 						     axios(options)
 						    .then(function(response){
 							app.Categoria=response.data[0];
+						    });		
+											  	
+			  },
+	
+			getDatabyPhoto:function(){
+				var _currentUrl = $("#fotogd option:selected").val(); 	
+						    const options = {
+						                method: 'POST',	
+		  								data: 'fotogd='+_currentUrl,
+						                url: "../ListarSelectPhoto",
+						            };
+						     axios(options)
+						    .then(function(response){
+							console.log(response);
+							app.ImgUpdate=response.data[0];
 						    });		
 											  	
 			  },
@@ -77,13 +142,33 @@
 					var imagefile = document.querySelector('#foto');
 			          formdata.append("foto", imagefile.files[0]);	        
 			        return formdata;       
+			    },	
+
+
+ 				ToFormDataT2:function(obj){
+			        var formdata = new FormData();
+			        for(var key in obj){
+			          formdata.append(key,obj[key]);
+			        } 		
+					var imagefile = document.querySelector('#foto2');
+			          formdata.append("foto", imagefile.files[0]);	        
+			        return formdata;       
 			    },		
+
+				ToFormDataT3:function(obj){
+			        var formdata = new FormData();
+			        for(var key in obj){
+			          formdata.append(key,obj[key]);
+			        } 		
+					var imagefile = document.querySelector('#foto3');
+			          formdata.append("foto", imagefile.files[0]);	        
+			        return formdata;       
+			    },	
 		  				 
 		    },		    
 		    mounted:function(){ 
 				this.ListaAllCat();
-		
-			
+				this.ListaAllFotos();					
 		    },
 
 			created:function(){ 

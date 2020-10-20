@@ -52,6 +52,23 @@ public class CategoriaFotoDao {
 		return new Gson().toJson(listOfMaps);
 	}
 	
+	public static String ConsultarListaDescripcionbyID(int id) {
+		Conexion con = new Conexion();
+		Connection connection = con.conectar();
+		String query = "SELECT descripcion FROM categoria_fotos where codigo="+id+" ";
+		List<Map<String, Object>> listOfMaps = null;
+		try {
+			QueryRunner queryRunner = new QueryRunner();
+			listOfMaps = queryRunner.query(connection, query, new MapListHandler());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("No se puedo Ejecutar la Consulta.", se);
+		} finally {
+			DbUtils.closeQuietly(connection);
+		}
+		return new Gson().toJson(listOfMaps);
+	}
+	
 	public String RutasListar() {
 		
 		List<String> listOfMaps =new ArrayList<String>();
@@ -90,7 +107,56 @@ public class CategoriaFotoDao {
 			return result;
 	
 	}
+	
+	public int actualizarWithImg(CategoriaFotoBean CFB) throws ClassNotFoundException {
 
+		String INSERT_USERS_SQL = "UPDATE `categoria_fotos` SET `Titulo`=?,`descripcion`=?,`fecha`=?,`urlFull`=?,`urlThumb`=? WHERE `codigo`=?";
+		int result = 0;
+		Conexion con = new Conexion();
+		Connection connection = con.conectar();
+		try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+			preparedStatement.setString(1, CFB.getTitulo());
+			preparedStatement.setString(2, CFB.getDescripcion());
+			preparedStatement.setString(3, CFB.getFecha());
+			preparedStatement.setString(4, CFB.getUrlFull());
+			preparedStatement.setString(5, CFB.getUrlThumb());
+			preparedStatement.setInt(6, CFB.getCodigo());
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			printSQLException(e);
+
+		}
+		return result;
+
+}
+
+	
+public int actualizar(CategoriaFotoBean CFB) throws ClassNotFoundException {
+
+		String INSERT_USERS_SQL = "UPDATE `categoria_fotos` SET `Titulo`=?,`descripcion`=?,`fecha`=? WHERE `codigo`=?";
+		int result = 0;
+		Conexion con = new Conexion();
+		Connection connection = con.conectar();
+		try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+			preparedStatement.setString(1, CFB.getTitulo());
+			preparedStatement.setString(2, CFB.getDescripcion());
+			preparedStatement.setString(3, CFB.getFecha());
+			//preparedStatement.setString(4, CFB.getUrlFull());
+			//preparedStatement.setString(5, CFB.getUrlThumb());
+			preparedStatement.setInt(4, CFB.getCodigo());
+			System.out.println(preparedStatement);
+			result = preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			printSQLException(e);
+
+		}
+		return result;
+
+}
+	
 	private void printSQLException(SQLException ex) {
 		for (Throwable e : ex) {
 			if (e instanceof SQLException) {

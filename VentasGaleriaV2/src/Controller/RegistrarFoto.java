@@ -61,7 +61,7 @@ public class RegistrarFoto extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-
+		boolean responseauto=false;
 		try {
 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -69,10 +69,10 @@ public class RegistrarFoto extends HttpServlet {
 			String fecha = dtf.format(now);
 			String titulo = request.getParameter("titulo");
 			String descripcion = request.getParameter("descripcion");
-			int cat_codigo = 1;
+			int cat_codigo = Integer.parseInt(request.getParameter("catid"));
 			String urlFull = request.getParameter("urlFull");
 			String urlThumb = request.getParameter("urlFull");
-
+			if(cat_codigo!=0) {
 			UploadImagen upload = new UploadImagen();
 			Part filePart = request.getPart("foto");
 			urlFull = upload.uploadImagen(filePart, fecha, urlFull);
@@ -88,13 +88,15 @@ public class RegistrarFoto extends HttpServlet {
 				FB.setUrlThumb(urlThumb);
 				FotoDao FD = new FotoDao();
 				FD.regitrar(FB);
+				responseauto=true;
+			}
 			}
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		response.getWriter().append("");
+		String rpt=""+responseauto;
+		response.getWriter().append(rpt);
 
 	}
 

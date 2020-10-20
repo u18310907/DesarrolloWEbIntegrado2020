@@ -42,6 +42,25 @@ public class FotoDao {
 		}
 		return new Gson().toJson(listOfMaps);
 	}
+	
+	public static String LastADD( ) {
+		Conexion con = new Conexion();
+		Connection connection = con.conectar();
+		String query;
+			query = "SELECT * FROM fotos ORDER BY codigo DESC LIMIT 8 ";
+		List<Map<String, Object>> listOfMaps = null;
+		try {
+			QueryRunner queryRunner = new QueryRunner();
+			listOfMaps = queryRunner.query(connection, query, new MapListHandler());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("No se puedo Ejecutar la Consulta.", se);
+		} finally {
+			DbUtils.closeQuietly(connection);
+		}
+		return new Gson().toJson(listOfMaps);
+	}
+
 
 	
 	public static String ConsultarListaAll() {

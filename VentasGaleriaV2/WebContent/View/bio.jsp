@@ -43,7 +43,7 @@
 
   <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
     <div class="site-logo">
-      <a href="index.html">Shutter</a>
+      <a href="photo.jsp">Galeria</a>
     </div>
     
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
@@ -68,19 +68,18 @@
         
         <div class="col-md-6 pt-4">
           <figure class="mb-5" data-aos="fade-up">
-            <img src="../Resources/images/img_1.jpg" alt="Image" class="img-fluid">
+            <img src="../Resources/images/About.jpg" alt="Image" class="img-fluid">
           </figure>
 
-          <h2 class="text-white mb-4" data-aos="fade-up">Hey There! I'm Rhea</h2>
+          <h2 class="text-white mb-4" data-aos="fade-up">Galeria de Fotos </h2>
 
           <div class="row" data-aos="fade-up">
             <div class="col-md-12">
-              <p>Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing</a> elit. Ipsa explicabo quasi cum, laudantium neque at veniam itaque atque <a href="#">necessitatibus</a> temporibus! Beatae sit soluta magni neque autem, suscipit dolorem, quo alias.</p>
-              <p>Similique deserunt sit accusamus ipsum optio. Quia, sapiente saepe culpa ad nemo velit, <a href="#">veritatis</a> numquam impedit voluptate quo tempore. Perferendis suscipit dolores, ducimus esse cupiditate possimus quae quis iusto rem?</p>
-              <p>Excepturi soluta maxime velit vitae tempore corporis, aliquid quidem modi libero! Optio minima esse hic repellendus a dolor perferendis dolore impedit quis et! Minus maxime itaque beatae totam eos reiciendis.</p>
-              <p class="mb-5">Ad veritatis eos dicta, animi et voluptates iusto, excepturi corporis amet, laboriosam, officiis libero. Odio excepturi aliquid suscipit nobis odit. Tenetur expedita impedit error consequatur sunt voluptatum voluptate voluptatem vitae!</p>
-
-              <p cass="mt-4">Thanks! <br> Rhea M.</p>
+              <p>Esta galeria fue implementada con <a href="#">Vue</a> para la carga asyncrona y mas rapida de los elementos, ademas por que tambien facilita el trabajo con las propiedades de cada uno de los elementos</p>
+              <p>Tambien se uso <a href="#">Axios</a> & <a href="#">JQuery</a> para la transmision de datos entre el controlador y la vista, mas no obstante por restrincciones del template, se tuvo que hacer uso de javascript puro para la captura de datos</p>
+              <p>Esta implementacion se realizo como trabajo para la PC2 del curso de Desarrollo Web Integrado </p>
+ 			  <p cass="mt-5">El lenguaje de programacion utilizado fue java, la base de datos utilizada fue Mysql y para las respuestas de datos se utilizo Gson .</p>
+              <p cass="mt-4">Thanks! <br> Alex P.</p>
             </div>
           </div>
         </div>

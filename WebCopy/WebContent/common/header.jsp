@@ -1,7 +1,7 @@
  <nav class="navbar navbar-expand-md navbar-dark"
-  style="background-color: tomato">
+  style="background-color: #26883f">
   <div>
-   <a href="https://www.javaguides.net" class="navbar-brand"> Todo App</a>
+   <a href="" class="navbar-brand"> App</a>
   </div>
 
   <ul class="navbar-nav navbar-collapse justify-content-end">

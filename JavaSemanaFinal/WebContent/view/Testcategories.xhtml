@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Game Warrior Template</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<h:outputStylesheet name="css/style.css" />
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/font-awesome.min.css" />
+	<h:outputStylesheet name="css/owl.carousel.css" />
+	
+	<h:outputStylesheet name="css/animate.css" />
+</h:head>
+<h:body>
+
+
+
+
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<!-- logo -->
+			<a class="site-logo" href="index.html">
+			<h:graphicImage value="#{resources['img:logo.png']}"/>
+			</a>
+			<div class="user-panel">
+				<a href="#">Login</a> / <a href="#">Register</a>
+			</div>
+			<!-- responsive -->
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+			<!-- site menu -->
+			<nav class="main-menu">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="review.html">Games</a></li>
+					<li><a href="categories.html">Blog</a></li>
+					<li><a href="community.html">Forums</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Latest news section -->
+	<div class="latest-news-section">
+		<div class="ln-title">Juegos en Promocion</div>
+		<div class="news-ticker">
+			<div class="news-ticker-contant">
+				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
+					<div class="nt-item">
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+	</div>
+	<!-- Latest news section end -->
+
+
+	<!-- Page info section -->
+	<ui:repeat value="#{controllerManagedGaleria.galeList}" var="item" varStatus="loop">
+	<section class="page-info-section set-bg"
+		data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+		<div class="pi-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-6 text-white">
+						<h2>#{item.titulo}</h2>
+						<p>#{item.descripcion}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</ui:repeat>
+	<!-- Page info section -->
+
+
+	<!-- Page section -->
+	<section class="page-section recent-game-page spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="row">
+						<ui:repeat value="#{controllerManagedBean.juegoList}" var="item" varStatus="loop">
+							<div class="col-md-6">				
+								<div class="recent-game-item">
+									<div class="rgi-thumb set-bg"
+										data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+										<div class="cata new">#{item.nombre}</div>
+									</div>
+									<div class="rgi-content">
+										<h5> #{item.titulo}</h5>
+										<p>#{item.descripcion}.</p>
+										<a href="#" class="comment">3 Comments</a>
+										<div class="rgi-extra">
+											<div class="rgi-star">
+												<h:graphicImage value="#{resources['img:star.png']}"/>
+									
+											</div>
+											<div class="rgi-heart">
+												<img src="../../resources/img/icons/heart.png" alt="" />
+											</div>
+										</div>
+									</div>
+								</div>							
+							</div>
+						 </ui:repeat>
+
+					</div>
+				
+				</div>
+				<!-- sidebar -->
+				<div class="col-lg-4 col-md-7 sidebar pt-5 pt-lg-0">
+					<!-- widget -->
+					<div class="widget-item">
+						<form class="search-widget">
+							<input type="text" placeholder="Search" />
+							<button>
+								<i class="fa fa-search"></i>
+							</button>
+						</form>
+					</div>
+					<!-- widget -->
+					<div class="widget-item">
+						<h4 class="widget-title">Ultimos Agregados</h4>
+						<div class="latest-blog">
+							<ui:repeat value="#{controllerManagedBean.topList}" var="item" varStatus="loop">
+							<div class="lb-item">
+								<div class="lb-thumb set-bg"
+									data-setbg="../../resources/img/dynamic/#{item.imagenName}"></div>
+								<div class="lb-content">
+									<div class="lb-date"> #{item.titulo}</div>
+									<p> #{item.descripcion}</p>
+									<a href="#" class="lb-author"> #{item.precio}</a>
+								</div>
+							</div>
+							</ui:repeat>
+						</div>
+					</div>
+					<!-- widget -->
+					<div class="widget-item">
+						<h4 class="widget-title">Ultimos Comentarios</h4>
+						<div class="top-comment">
+						<ui:repeat value="#{controllerManagedComentario.comList}" var="item" varStatus="loop">
+							<div class="tc-item">
+								<div class="tc-thumb set-bg"
+									data-setbg="../../resources/img/authors/#{item.imagenName}"></div>
+								<div class="tc-content">
+									<p>
+										<a href="#">#{item.usuario}</a> <span>#{item.comentario}</span> 
+									</p>
+									<div class="tc-date">#{item.fecha}</div>
+								</div>
+							</div>
+						</ui:repeat>
+			
+						</div>
+					</div>
+					<!-- widget -->
+				<ui:repeat value="#{controllerManagedBean.topCosto}" var="item" varStatus="loop">
+					<div class="widget-item">
+						<div class="feature-item set-bg"
+							data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+							<span class="cata new">Nuevo</span>
+							<div class="fi-content text-white">
+								<h5>
+									<a href="#">#{item.titulo}</a>
+								</h5>
+								<p>#{item.descripcion}
+								</p>
+							
+							</div>
+						</div>
+					</div>
+				</ui:repeat>
+					<!-- widget -->
+				<ui:repeat value="#{controllerManagedBean.lowCosto}" var="item" varStatus="loop">
+					<div class="widget-item">
+						<div class="review-item">
+							<div class="review-cover set-bg"
+								data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+								<div class="score yellow">9.3</div>
+							</div>
+							<div class="review-text">
+								<h5>#{item.titulo}</h5>
+								<p>#{item.descripcion}</p>
+							</div>
+						</div>
+					</div>
+				</ui:repeat>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Page section end -->
+
+
+	<!-- Footer top section -->
+	<section class="footer-top-section">
+		<div class="container">
+			<div class="footer-top-bg">
+				<img src="../../resources/img/footer-top-bg.png" alt="" />
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="footer-logo text-white">
+						<img src="../../resources/img/footer-logo.png" alt="" />
+						<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum
+							dolor sit ame.</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-widget mb-5 mb-md-0">
+						<h4 class="fw-title">Recien Agregados</h4>
+						<div class="latest-blog">
+						<ui:repeat value="#{controllerManagedBean.topList}" var="item" varStatus="loop">
+							<div class="lb-item">
+								<div class="lb-thumb set-bg"
+									data-setbg="../../resources/img/dynamic/#{item.imagenName}"></div>
+								<div class="lb-content">
+									<div class="lb-date">#{item.titulo}</div>
+									<p>#{item.descripcion}</p>
+									<a href="#" class="lb-author">#{item.precio}</a>
+								</div>
+							</div>
+						</ui:repeat>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-widget">
+						<h4 class="fw-title">Ultimos Comentarios</h4>
+						<div class="top-comment">
+						<ui:repeat value="#{controllerManagedComentario.comList}" var="item" varStatus="loop">
+							<div class="tc-item">
+								<div class="tc-thumb set-bg"
+									data-setbg="../../resources/img/authors/#{item.imagenName}"></div>
+								<div class="tc-content">
+									<p>
+										<a href="#">#{item.usuario}</a> <span>on</span> #{item.comentario}
+									</p>
+									<div class="tc-date">#{item.fecha}</div>
+								</div>
+							</div>
+						</ui:repeat>									
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer top section end -->
+
+
+	<!-- Footer section -->
+	<footer class="footer-section">
+		<div class="container">
+			<ul class="footer-menu">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="review.html">Games</a></li>
+				<li><a href="categories.html">Blog</a></li>
+				<li><a href="community.html">Forums</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+
+		</div>
+	</footer>
+	<!-- Footer section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<h:outputScript library="js" name="jquery-3.2.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="owl.carousel.min.js" />
+	<h:outputScript library="js" name="jquery.marquee.min.js" />
+	<h:outputScript library="js" name="main.js" />
+s
+</h:body>
+</html>

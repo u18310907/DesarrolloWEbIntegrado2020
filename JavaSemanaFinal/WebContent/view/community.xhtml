@@ -1,0 +1,100 @@
+<ui:composition template="template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+        >
+    
+     <ui:define name="content">
+
+	<!-- Latest news section -->
+	<div class="latest-news-section">
+		<div class="ln-title">Juegos en Promocion</div>
+		<div class="news-ticker">
+			<div class="news-ticker-contant">
+				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
+					<div class="nt-item">
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+	</div>
+	<!-- Latest news section end -->
+
+
+	<!-- Page info section -->
+
+	<c:forEach  var="item" items="#{controllerManagedGaleria.galeListForum}">
+	<section class="page-info-section set-bg"
+		data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+		<div class="pi-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-6 text-white">
+						<h2>#{item.titulo}</h2>
+						<p>#{item.descripcion}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</c:forEach>
+
+	<!-- Page info section -->
+
+
+	<!-- Page section -->
+	
+	<section class="page-section community-page set-bg" data-setbg="../../resources/img/community-bg.jpg">
+		<div class="community-warp spad">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="community-top-title">Usuarios #{controllerManagedForo.cantidad}</h3>
+					</div>
+				</div>
+				<ul class="community-post-list">
+				<h:panelGroup id="myPanel" layout="block" >
+				<c:forEach items="#{controllerManagedComentario.comListFull}" var="item" >
+					<li>
+						<div class="community-post">
+							<div class="author-avator set-bg" data-setbg="../../resources/img/authors/#{item.imagenName}"></div>
+							<div class="post-content">
+								<h5>#{item.usuario}<span>Publicado</span></h5>
+								<div class="post-date">#{item.fecha}</div>
+								<p>#{item.comentario} </p>
+							</div>
+						</div>
+					</li>
+				</c:forEach>
+				</h:panelGroup>
+				
+				<li>
+					<div class="col-lg-10">
+						<div class="community-post">
+							<div class="contact-form-warp">
+								<h4 class="comment-title"><h1 style="color:white;">Comentar</h1></h4>							
+    							  <h:form styleClass="comment-form">
+									<div class="row">
+										<div class="col-lg-12">
+										<h:inputTextarea cols="30" rows="10" styleClass="form-control"  a:placeholder="Ingrese sus comentario ..." value="#{controllerManagedForo.comentario}" required="true"/>
+										<h:commandButton  styleClass="site-btn btn-sm" value="Submit" action="#{controllerManagedForo.resultado}"  > <f:ajax execute="@form" render="@form"  onevent="function(data) { if (data.status === 'success') { location.reload(); } }" /></h:commandButton>
+										</div>
+									</div>
+								</h:form>
+							</div>
+						</div>
+					</div>
+				</li>
+				</ul>
+				
+
+			</div>
+		</div>
+	</section>
+	<!-- Page section end -->
+</ui:define>
+</ui:composition>

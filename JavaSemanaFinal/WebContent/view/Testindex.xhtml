@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>UTP Ing sistemas</title>
+</h:head>
+<h:body>
+	<h2 style="color: blue;">Lista de UTP </h2>
+
+	<h:form>
+		<h:dataTable value="#{controllerManagedBean.juegoList}" var="valoradar"
+			border="2" cellspacing="1" cellpadding="1">
+
+			<h:column>
+				<f:facet name="header">Clave</f:facet>
+ #{valoradar.codigo}
+ </h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+ #{valoradar.titulo}
+ </h:column>
+			<h:column>
+				<f:facet name="header">Trimestre</f:facet>
+ #{valoradar.descripcion}
+ </h:column>
+			<h:column>
+				<f:facet name="header">Requisito</f:facet>
+ #{valoradar.nombre}
+ </h:column>
+ 			<h:column>
+				<f:facet name="header">Telefono</f:facet>
+ #{valoradar.observacion}
+ </h:column>
+ 
+ 			<h:column>
+				<f:facet name="header">Direccion</f:facet>
+ #{valoradar.imagenName}
+ </h:column>
+
+ 
+
+		</h:dataTable>
+
+	</h:form>
+</h:body>
+</html>

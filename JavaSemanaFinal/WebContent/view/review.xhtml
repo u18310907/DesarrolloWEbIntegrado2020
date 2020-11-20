@@ -1,0 +1,121 @@
+
+
+<ui:composition template="template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    >
+    
+    <ui:define name="content">
+    
+
+
+	<!-- Latest news section -->
+	<div class="latest-news-section">
+		<div class="ln-title">Juegos en Promocion</div>
+		<div class="news-ticker">
+			<div class="news-ticker-contant">
+				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
+					<div class="nt-item">
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+					</div>
+				</ui:repeat>
+			</div>
+		</div>
+	</div>
+	<!-- Latest news section end -->
+
+
+	<!-- Page info section -->
+	<c:forEach  var="item" items="#{controllerManagedGaleria.galeListGames}">
+	<section class="page-info-section set-bg"
+		data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+		<div class="pi-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-6 text-white">
+						<h2>#{item.titulo}</h2>
+						<p>#{item.descripcion}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</c:forEach>
+	<!-- Page info section -->
+
+	<div class="alert alert-success alert-dismissible fade" role="alert" id="alertsuccess">
+	  <strong>Exito!</strong> La venta se realizo 
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true"></span>
+	  </button>
+	</div>
+	<!-- Page section -->
+	<section class="page-section review-page spad">
+		<div class="container">
+			<div class="row">
+				<c:forEach id="userSearchResults" var="item" items="#{controllerManagedListaDeseo.listDeseo}" >
+				<div class="col-md-6">
+					<div class="review-item">
+						<div class="review-cover set-bg" data-setbg="../../resources/img/review/#{item.imagenName}">
+							<div class="score yellow">#{item.precio}</div>
+						</div>
+						<div class="review-text">
+							<h4>#{item.titulo}</h4>
+							<p>#{item.descripcion}#</p>
+							<div class="rating">
+								<button class="site-btn btn-sm"  data-toggle="modal" data-target="#exampleModal" onclick="getModalById(#{item.codjue})">Comprar Ahora</button>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>								
+							</div>
+						</div>
+					</div>
+				</div>
+				</c:forEach>
+			</div>
+	
+		</div>
+	</section>
+	<!-- Page section end -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Compra de Video Juegos</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true"></span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form>
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Titulo:</label>
+	            <input type="text" class="form-control" id="vtitulo" name="vtitulo" readonly="readonly"/>
+	          </div>
+	          <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Dexcripcion:</label>
+	            <input type="text" class="form-control" id="vdescripcion" name="vdescripcion" readonly="readonly"/>
+	          </div>
+	           <div class="form-group">
+	            <label for="recipient-name" class="col-form-label">Precio:</label>
+	            <input type="text" class="form-control" id="vprecio" name="vprecio" readonly="readonly"/>
+	          </div>
+	          <div class="form-group">
+	            <img src="" alt="" id="vimagename" />
+	          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary"   onclick="SendVenta()" data-dismiss="modal">Comprar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+
+</ui:define>
+</ui:composition>

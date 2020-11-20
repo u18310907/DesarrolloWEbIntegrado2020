@@ -1,0 +1,208 @@
+<ui:composition template="AdminHeader.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+    
+    >
+    
+     <ui:define name="content">
+    
+
+	<!-- Latest news section -->
+	<div class="latest-news-section">
+		<div class="ln-title">Juegos en Promocion</div>
+		<div class="news-ticker">
+			<div class="news-ticker-contant">
+					<div class="nt-item">
+						<span class="new">Admin Panel</span>"En esta vista podra agrgar o modificar funcionalidades del sistema"
+					</div>
+					<div class="nt-item"> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;
+					</div>
+					<div class="nt-item"> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;                                                                                                                    
+					</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- Latest news section end -->
+
+
+	<!-- Page info section -->
+		<c:forEach  var="item" items="#{controllerManagedGaleria.galeListAdmin}">
+	<section class="page-info-section set-bg"
+		data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+		<div class="pi-content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-5 col-lg-6 text-white">
+						<h2>Administrador</h2>
+						<p>Administrador Panel</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</c:forEach>
+	<!-- Page info section -->
+	
+	<!-- Page section -->
+	<section class="page-section spad contact-page">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12">
+					<div class="contact-form-warp">
+						<div class="col-md-12">
+									<div class="form-group">							
+										<select class="selectpicker form-control" id="SltVenta" data-live-search="true">
+										<option>Seleccione ...</option>
+										<c:forEach  var="item" items="#{controllerManagedAdmin.listAprobar}">
+										  <option value="#{item.codigo}">AED-0000-#{item.codigo}</option>
+										</c:forEach>
+										</select>
+									</div>
+								</div>
+						<h4 class="comment-title text-center">Aprobacion Ventas</h4>
+						<h:form styleClass="comment-form"  id="ventasform">
+							<div class="row">
+							
+																
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="">Cliente</label>
+										<div class="col-md-12">
+											<h:inputText   styleClass="form-control" id="usuario" a:placeholder="nombre del cliente" value="#{controllerManagedAdmin.usuario}"  /> 
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="">Juego</label>
+										<div class="col-md-12">
+											<h:inputText   styleClass="form-control" id="juego" a:placeholder="nombre del juego" value="#{controllerManagedAdmin.juego}" required="true"/> 
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="">Precio</label>
+										<div class="col-md-12">
+											<h:inputText   styleClass="form-control" id="vprecio" a:placeholder="0.00" value="#{controllerManagedAdmin.vprecio}" required="true" /> 									
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="">Estado</label>
+										<div class="col-md-12">
+										<h:selectOneMenu value = "#{controllerManagedAdmin.ventselect}" styleClass="form-control"> 
+										   <f:selectItem itemValue = "0" itemLabel = "PENDIENTE" /> 
+										   <f:selectItem itemValue = "1" itemLabel = "APROBADO" /> 
+										</h:selectOneMenu> 							
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-12">
+									<h:commandButton  styleClass="btn btn-lg btn-success" value="ActualizarRegistro" action="#{controllerManagedAdmin.resultado}"  > <f:ajax execute="@form" render="@form"  onevent="function(data) { if (data.status === 'success') { location.reload(); } }" /></h:commandButton>
+								</div>
+								
+							</div>
+						</h:form>
+					</div>
+				</div>						
+			</div>
+		</div>
+	</section>
+	<!-- Page section -->
+	
+	
+	<!-- Page section -->
+	<section class="page-section spad contact-page">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-6">
+					<div class="contact-form-warp">
+						<h4 class="comment-title">Portadas</h4>
+						<form class="comment-form">
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" placeholder="Name"/>
+								</div>
+								<div class="col-md-6">
+									<input type="email" placeholder="Email"/>
+								</div>
+								<div class="col-lg-12">
+									<input type="text" placeholder="Subject"/>
+									<textarea placeholder="Message"></textarea>
+									<button class="btn btn-lg btn-success">Agregar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>	
+				<div class="col-md-6">
+					<div class="contact-form-warp">
+						<h4 class="comment-title">Juegos</h4>
+						<form class="comment-form">
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" placeholder="Name"/>
+								</div>
+								<div class="col-md-6">
+									<input type="email" placeholder="Email"/>
+								</div>
+								<div class="col-lg-12">
+									<input type="text" placeholder="Subject"/>
+									<textarea placeholder="Message"></textarea>
+									<button class="btn btn-lg btn-success">Agregar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>		
+				</div>
+			</div>
+		
+	</section>
+	<!-- Page section end -->
+	
+	<!-- Page section -->
+	<section class="page-section spad contact-page">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12">
+					<div class="contact-form-warp">
+						<h4 class="comment-title text-cente">Promocion</h4>
+						<form class="comment-form">
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" placeholder="Name"/>
+								</div>
+								<div class="col-md-6">
+									<input type="email" placeholder="Email"/>
+								</div>
+								<div class="col-lg-12">
+									<input type="text" placeholder="Subject"/>
+									<textarea placeholder="Message"></textarea>
+									<button class="btn btn-lg btn-success">Agregar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>	
+	
+				</div>
+			</div>
+		
+	</section>
+	<!-- Page section end -->
+	
+
+</ui:define>
+</ui:composition>

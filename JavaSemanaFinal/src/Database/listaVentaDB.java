@@ -14,6 +14,8 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.google.gson.Gson;
+
+import Model.Foro;
 import Model.Venta;
 
 
@@ -38,8 +40,6 @@ public class listaVentaDB {
 		Integer numero=0;
 		String resultado="";
 		try {
-				
-		
 			ConexionDB conectaBD = new ConexionDB();
 			Connection con = conectaBD.conectar();
 			String query = "INSERT INTO `venta`(`codjue`, `codusu`, `precio`, `fecha`,estado) VALUES (?,?,?,?,?)";
@@ -132,6 +132,50 @@ public class listaVentaDB {
 			return null;
 		}
 	}
+	
+	
+	public  String  VentasInputsServ(Integer codigo)  {
+		ConexionDB conectaBD = new ConexionDB();
+		conexion = conectaBD.conectar();
+		String query;
+		query = "SELECT V.codigo,V.codjue,j.titulo,v.codusu,U.usuario,j.precio,U.correo FROM venta V inner join usuario U ON v.codusu=U.codigo INNER JOIN juegos j ON j.codigo=v.codjue WHERE V.codigo="+codigo+"";
+		System.out.println(query);
+		List<Map<String, Object>> listOfMaps = null;
+		try {
+			QueryRunner queryRunner = new QueryRunner();
+			listOfMaps = queryRunner.query(conexion, query, new MapListHandler());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("No se puedo Ejecutar la Consulta.", se);
+		} finally {
+			DbUtils.closeQuietly(conexion);
+		}
+		return new Gson().toJson(listOfMaps);
+	}
+	
+	
+	public String ActualizarVenta(String codigo,String estado) throws SQLException {
+		String data;
+		try {
+					
+			ConexionDB conectaBD = new ConexionDB();
+			Connection con = conectaBD.conectar();
+			String query = "UPDATE venta SET estado=? WHERE codigo=? ";
+			System.out.println(query);
+			PreparedStatement stmt = con.prepareStatement(query);			
+			stmt.setInt(1,Integer.parseInt(estado));
+			stmt.setInt(2,Integer.parseInt(codigo));
+			stmt.executeUpdate();
+			data = "success";
+		
+		} catch (Exception e) {
+				//e.printStackTrace();
+			data = "fail";
+		}
+		//conexion.close();
+		return data;
+	}
+	
 	
 	
 

@@ -1,29 +1,8 @@
 
 
-$(document).ready(function () {
 $('#SltVenta').selectpicker({
     size: 6
  });
-
-
-$('#SltVenta').change(function(){
-	
-	  var Selected=$('#SltVenta').val();
-      var Select=$('#SltVenta option:selected').val();
-	//var usuario = document.getElementById('ventasform:usuario').value; 
-	//$('#ventasform:usuario').val("UserTest");
-	document.getElementById('ventasform:usuario').value="ejemplo"; 
-	 //usuario.value = "UserTest";
-	console.log("Elegio Txto "+Select);
-	console.log("Valor "+Select);
- 	//var juego = document.getElementById('ventasform:juego').value; 
-	// juego.value = "Juego Test";
- 	//var precio = document.getElementById('ventasform:precio').value; 
-	// precio.value = "19999";
-
-});
-});
-
 
 
 function setRegistrarUsuario(){
@@ -120,3 +99,45 @@ function SendVenta(){
 }
 
 
+
+$(document).ready(function () {
+
+$('#SltVenta').change(function(){
+var codigoS=$('#SltVenta option:selected').val();
+$.ajax({
+          	type: 'POST',
+       		url: '../VentasAdmin',
+            dataType : 'json',
+            data: 'codigoSelected='+codigoS,
+	//		async:false,
+    }).done(function(resp){
+	
+	document.getElementById('ventasform:operacion').value=resp[0]["codigo"]; 
+	document.getElementById('ventasform:usuario').value=resp[0]["usuario"]; 
+	document.getElementById('ventasform:juego').value=resp[0]["titulo"]; 
+	document.getElementById('ventasform:vprecio').value=resp[0]["precio"]; 
+	document.getElementById('ventasform:correo').value=resp[0]["correo"]; 
+
+	//	$('#vtitulo').val(resp[0]["titulo"]);
+	//	$('#vdescripcion').val(resp[0]["descripcion"]);
+	//	$('#vprecio').val(resp[0]["precio"]);
+	//	$('#vimagename').attr("src","../../resources/img/review/"+resp[0]["ImagenName"]);	
+	  console.log(resp);
+	//	values=resp;
+ });
+
+	 // var Selected=$('#SltVenta').val();
+   
+	//var usuario = document.getElementById('ventasform:usuario').value; 
+	//$('#ventasform:usuario').val("UserTest");
+//	document.getElementById('ventasform:usuario').value="ejemplo"; 
+	 //usuario.value = "UserTest";
+//	console.log("Elegio Txto "+Select);
+//	console.log("Valor "+Select);
+ 	//var juego = document.getElementById('ventasform:juego').value; 
+	// juego.value = "Juego Test";
+ 	//var precio = document.getElementById('ventasform:precio').value; 
+	// precio.value = "19999";
+
+});
+});

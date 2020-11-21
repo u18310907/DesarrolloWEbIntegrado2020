@@ -1,12 +1,19 @@
 package Controller;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import Database.listaVentaDB;
 import Model.ListDeseos;
 import Model.Venta;
+import Routes.Mailer;
+import Routes.GenerarPdf;
+
 
 @ManagedBean(name = "controllerManagedAdmin")
 @RequestScoped
@@ -27,6 +34,8 @@ public class controllerManagedAdmin implements Serializable{
 	private String juego;
 	private String vprecio;
 	private String ventselect;
+	private String codigoOpera;
+	private String correo;
 
 	private static ArrayList<ListDeseos> listDeseo;
 
@@ -46,12 +55,44 @@ public class controllerManagedAdmin implements Serializable{
 			*/
 	}
 	
+	
 	public void resultado() {
 		
-		System.out.println("juego "+juego);
-		System.out.println("usuario "+usuario);
-		System.out.println("precio "+vprecio);
-		System.out.println("Selected "+ventselect);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		String fecha = dtf.format(now);
+		
+		
+		//System.out.println("juego "+juego);
+		//System.out.println("usuario "+usuario);
+		//System.out.println("precio "+vprecio);
+		//System.out.println("Selected "+ventselect);
+		//System.out.println("CodigoOperacion "+codigoOpera);
+		//System.out.println("CodigoOperacion "+correo);
+		 listaDesDB= new listaVentaDB();
+		 try {
+			 
+			GenerarPdf.GeneratePDF(usuario,fecha,juego,vprecio,codigoOpera);
+			 
+			String exito=listaDesDB.ActualizarVenta(codigoOpera, ventselect);
+			if(exito.equals("success")) {
+				String to=correo;
+				String subject="Compra de Video Juego";
+				String msg="Su compra se realizo exitosamente :  "
+							+"\n\n\n\n\n\n\n"
+							+"Atentamente Game Warrior ";				
+				Mailer.sendArchive(to, subject, msg,codigoOpera);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		
+	
 		
 	}
 	
@@ -174,14 +215,22 @@ public class controllerManagedAdmin implements Serializable{
 	public void setVentselect(String ventselect) {
 		this.ventselect = ventselect;
 	}
-	
-	
-	
-	
-	
-	
-	
 
-	
+	public String getCodigoOpera() {
+		return codigoOpera;
+	}
+
+	public void setCodigoOpera(String codigoOpera) {
+		this.codigoOpera = codigoOpera;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
 	
 }

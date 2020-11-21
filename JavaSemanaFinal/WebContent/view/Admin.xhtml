@@ -71,9 +71,11 @@
 																
 								<div class="col-md-12">
 									<div class="form-group">
+										<h:inputHidden id="operacion" value="#{controllerManagedAdmin.codigoOpera}"  /> 
+										<h:inputHidden id="correo" value="#{controllerManagedAdmin.correo}"  /> 
 										<label class="col-md-4 control-label" for="">Cliente</label>
 										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="usuario" a:placeholder="nombre del cliente" value="#{controllerManagedAdmin.usuario}"  /> 
+											<h:inputText   styleClass="form-control" id="usuario" a:placeholder="nombre del cliente" value="#{controllerManagedAdmin.usuario}"  required="true"/> 
 										</div>
 									</div>
 								</div>
@@ -82,7 +84,7 @@
 									<div class="form-group">
 										<label class="col-md-4 control-label" for="">Juego</label>
 										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="juego" a:placeholder="nombre del juego" value="#{controllerManagedAdmin.juego}" required="true"/> 
+											<h:inputText   styleClass="form-control" id="juego" a:placeholder="nombre del juego" value="#{controllerManagedAdmin.juego}"  required="true"/> 
 										</div>
 									</div>
 								</div>
@@ -91,7 +93,7 @@
 									<div class="form-group">
 										<label class="col-md-4 control-label" for="">Precio</label>
 										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="vprecio" a:placeholder="0.00" value="#{controllerManagedAdmin.vprecio}" required="true" /> 									
+											<h:inputText   styleClass="form-control" id="vprecio" a:placeholder="0.00" value="#{controllerManagedAdmin.vprecio}"   required="true" /> 									
 										</div>
 									</div>
 								</div>
@@ -109,7 +111,7 @@
 								</div>
 								
 								<div class="col-md-12">
-									<h:commandButton  styleClass="btn btn-lg btn-success" value="ActualizarRegistro" action="#{controllerManagedAdmin.resultado}"  > <f:ajax execute="@form" render="@form"  onevent="function(data) { if (data.status === 'success') { location.reload(); } }" /></h:commandButton>
+									<h:commandButton  styleClass="btn btn-lg btn-success" value="ActualizarRegistro" action="#{controllerManagedAdmin.resultado}" onclick="$('#success_tic').modal('show');" > <f:ajax execute="@form" render=":ventasform" resetValues="true" /></h:commandButton>
 								</div>
 								
 							</div>
@@ -202,7 +204,29 @@
 		
 	</section>
 	<!-- Page section end -->
-	
+	<div class="row justify-content-center">
+		<div id="success_tic" class="modal fade" role="dialog"
+							ref="success_tic">
+				<div class="modal-dialog">
+								<!-- Modal content-->
+								<div class="modal-content">
+									<a class="close" href="#" data-dismiss="modal"></a>
+									<div class="page-body">
+										<div class="head">
+											<h3 style="margin-top: 5px;">Registro</h3>
+											<h4>Se realizo la accion Correctamente</h4>
+										</div>
+										<h1 style="text-align: center;">
+											<div class="checkmark-circle">
+												<div class="background"></div>
+												<div class="checkmark draw"></div>
+											</div>
+										</h1>
+									</div>
+								</div>
+				</div>
+			</div>
+		</div>
 
 </ui:define>
 </ui:composition>

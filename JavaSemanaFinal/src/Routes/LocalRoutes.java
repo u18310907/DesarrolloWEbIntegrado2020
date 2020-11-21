@@ -16,7 +16,7 @@ public class LocalRoutes{
 		this.CONTROLADOR="com.mysql.jdbc.Driver";
 		this.rutaImagenFull="../resources/img/";
 		this.rutaImagenThumn="../resources/img/";
-		this.localRoute="D:/DesarrolloWEbIntegrado2020/TrabajoFinalWeb/WebContent/resources/img/";
+		this.localRoute="D:/DesarrolloWEbIntegrado2020/TrabajoFinalWeb/WebContent/resources/pdf/";
     }
 
 	public String getRutaImagenFull() {

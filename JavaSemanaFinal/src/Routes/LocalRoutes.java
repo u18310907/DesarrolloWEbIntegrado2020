@@ -8,6 +8,7 @@ public class LocalRoutes{
     private String rutaImagenFull;
     private String rutaImagenThumn;
     private String localRoute;
+    private String localRouteJSF;
     
     public LocalRoutes(){
 		this.URL="jdbc:mysql://localhost:3306/gamesbd";
@@ -17,6 +18,7 @@ public class LocalRoutes{
 		this.rutaImagenFull="../resources/img/";
 		this.rutaImagenThumn="../resources/img/";
 		this.localRoute="D:/DesarrolloWEbIntegrado2020/TrabajoFinalWeb/WebContent/resources/pdf/";
+		this.localRouteJSF="D://DesarrolloWEbIntegrado2020/JavaSemanaFinal/WebContent/resources/img/dynamic/";
     }
 
 	public String getRutaImagenFull() {
@@ -58,6 +60,17 @@ public class LocalRoutes{
 	public void setLocalRoute(String localRoute) {
 		this.localRoute = localRoute;
 	}
+
+	public String getLocalRouteJSF() {
+		return localRouteJSF;
+	}
+
+	public void setLocalRouteJSF(String localRouteJSF) {
+		this.localRouteJSF = localRouteJSF;
+	}
+	
+	
+	
 	
     
 }

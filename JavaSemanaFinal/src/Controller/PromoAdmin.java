@@ -3,24 +3,28 @@ package Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Routes.Mailer;
+
+import Database.promocionDB;
+
 
 /**
- * Servlet implementation class SendMail
+ * Servlet implementation class VentasAdmin
  */
-@WebServlet("/SendMail")
-public class SendMail extends HttpServlet {
+@WebServlet("/PromoAdmin")
+@MultipartConfig
+public class PromoAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendMail() {
+    public PromoAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +34,7 @@ public class SendMail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-	
-		//String to=request.getParameter("to");
-		//String subject=request.getParameter("subject");
-		//String msg=request.getParameter("msg");
-		
-		String to="kyscompani@gmail.com";
-		String subject="Mensaje Java";
-		String msg="Este es el Contenido Java";
-		
-		Mailer.send(to, subject, msg);
-		out.print("message has been sent successfully");
-		out.close();
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,6 +43,17 @@ public class SendMail extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+			String codigo = request.getParameter("codigoSelected");
+			promocionDB ldb=new promocionDB();
+			String json=ldb.PromoInputsServ(Integer.parseInt(codigo));
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			out.print(json);
+			out.flush();
+			
+		
+		
 	}
 
 }

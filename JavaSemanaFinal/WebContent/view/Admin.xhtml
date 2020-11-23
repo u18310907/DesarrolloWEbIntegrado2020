@@ -1,232 +1,488 @@
 <ui:composition template="AdminHeader.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-    xmlns:c="http://java.sun.com/jsp/jstl/core"
-    xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-    
-    >
-    
-     <ui:define name="content">
-    
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-	<!-- Latest news section -->
-	<div class="latest-news-section">
-		<div class="ln-title">Juegos en Promocion</div>
-		<div class="news-ticker">
-			<div class="news-ticker-contant">
+	<ui:define name="content">
+
+
+		<!-- Latest news section -->
+		<div class="latest-news-section">
+			<div class="ln-title">Juegos en Promocion</div>
+			<div class="news-ticker">
+				<div class="news-ticker-contant">
 					<div class="nt-item">
-						<span class="new">Admin Panel</span>"En esta vista podra agrgar o modificar funcionalidades del sistema"
+						<span class="new">Admin Panel</span>"En esta vista podra agrgar o
+						modificar funcionalidades del sistema"
 					</div>
-					<div class="nt-item"> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;
-					</div>
-					<div class="nt-item"> &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;                                                                                                                    
-					</div>
+					<div class="nt-item">&#160; &#160; &#160; &#160; &#160;
+						&#160; &#160; &#160; &#160; &#160; &#160; &#160;</div>
+					<div class="nt-item">&#160; &#160; &#160; &#160; &#160;
+						&#160; &#160; &#160; &#160; &#160; &#160; &#160;</div>
+				</div>
 			</div>
+
 		</div>
-		
-	</div>
-	<!-- Latest news section end -->
+		<!-- Latest news section end -->
 
 
-	<!-- Page info section -->
-		<c:forEach  var="item" items="#{controllerManagedGaleria.galeListAdmin}">
-	<section class="page-info-section set-bg"
-		data-setbg="../../resources/img/dynamic/#{item.imagenName}">
-		<div class="pi-content">
+		<!-- Page info section -->
+		<c:forEach var="item"
+			items="#{controllerManagedGaleria.galeListAdmin}">
+			<section class="page-info-section set-bg"
+				data-setbg="../../resources/img/dynamic/#{item.imagenName}">
+				<div class="pi-content">
+					<div class="container">
+						<div class="row">
+							<div class="col-xl-5 col-lg-6 text-white">
+								<h2>Administrador</h2>
+								<p>Administrador Panel</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</c:forEach>
+		<!-- Page info section -->
+
+		<!-- Page section -->
+		<section class="page-section spad contact-page">
 			<div class="container">
 				<div class="row">
-					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>Administrador</h2>
-						<p>Administrador Panel</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	</c:forEach>
-	<!-- Page info section -->
-	
-	<!-- Page section -->
-	<section class="page-section spad contact-page">
-		<div class="container">	
-			<div class="row">
-				<div class="col-md-12">
-					<div class="contact-form-warp">
-						<div class="col-md-12">
-									<div class="form-group">							
-										<select class="selectpicker form-control" id="SltVenta" data-live-search="true">
-										<option>Seleccione ...</option>
-										<c:forEach  var="item" items="#{controllerManagedAdmin.listAprobar}">
-										  <option value="#{item.codigo}">AED-0000-#{item.codigo}</option>
-										</c:forEach>
-										</select>
-									</div>
-								</div>
-						<h4 class="comment-title text-center">Aprobacion Ventas</h4>
-						<h:form styleClass="comment-form"  id="ventasform">
-							<div class="row">
-							
-																
-								<div class="col-md-12">
-									<div class="form-group">
-										<h:inputHidden id="operacion" value="#{controllerManagedAdmin.codigoOpera}"  /> 
-										<h:inputHidden id="correo" value="#{controllerManagedAdmin.correo}"  /> 
-										<label class="col-md-4 control-label" for="">Cliente</label>
-										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="usuario" a:placeholder="nombre del cliente" value="#{controllerManagedAdmin.usuario}"  required="true"/> 
+					<div class="col-md-12">
+						<div class="contact-form-warp">
+
+							<h4 class="comment-title text-center text-center">Formulario
+								para la Aprobacion de Ventas</h4>
+							<h:form styleClass="comment-form" id="ventasform">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<select class="selectpicker form-control" id="SltVenta"
+												data-live-search="true">
+												<option>Seleccione ...</option>
+												<c:forEach var="item"
+													items="#{controllerManagedAdmin.listAprobar}">
+													<option value="#{item.codigo}">AED-0000-#{item.codigo}</option>
+												</c:forEach>
+											</select>
 										</div>
 									</div>
-								</div>
-								
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="">Juego</label>
-										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="juego" a:placeholder="nombre del juego" value="#{controllerManagedAdmin.juego}"  required="true"/> 
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="">Precio</label>
-										<div class="col-md-12">
-											<h:inputText   styleClass="form-control" id="vprecio" a:placeholder="0.00" value="#{controllerManagedAdmin.vprecio}"   required="true" /> 									
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="">Estado</label>
-										<div class="col-md-12">
-										<h:selectOneMenu value = "#{controllerManagedAdmin.ventselect}" styleClass="form-control"> 
-										   <f:selectItem itemValue = "0" itemLabel = "PENDIENTE" /> 
-										   <f:selectItem itemValue = "1" itemLabel = "APROBADO" /> 
-										</h:selectOneMenu> 							
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-md-12">
-									<h:commandButton  styleClass="btn btn-lg btn-success" value="ActualizarRegistro" action="#{controllerManagedAdmin.resultado}" onclick="$('#success_tic').modal('show');" > <f:ajax execute="@form" render=":ventasform" resetValues="true" /></h:commandButton>
-								</div>
-								
-							</div>
-						</h:form>
-					</div>
-				</div>						
-			</div>
-		</div>
-	</section>
-	<!-- Page section -->
-	
-	
-	<!-- Page section -->
-	<section class="page-section spad contact-page">
-		<div class="container">	
-			<div class="row">
-				<div class="col-md-6">
-					<div class="contact-form-warp">
-						<h4 class="comment-title">Portadas</h4>
-						<form class="comment-form">
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" placeholder="Name"/>
-								</div>
-								<div class="col-md-6">
-									<input type="email" placeholder="Email"/>
-								</div>
-								<div class="col-lg-12">
-									<input type="text" placeholder="Subject"/>
-									<textarea placeholder="Message"></textarea>
-									<button class="btn btn-lg btn-success">Agregar</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>	
-				<div class="col-md-6">
-					<div class="contact-form-warp">
-						<h4 class="comment-title">Juegos</h4>
-						<form class="comment-form">
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" placeholder="Name"/>
-								</div>
-								<div class="col-md-6">
-									<input type="email" placeholder="Email"/>
-								</div>
-								<div class="col-lg-12">
-									<input type="text" placeholder="Subject"/>
-									<textarea placeholder="Message"></textarea>
-									<button class="btn btn-lg btn-success">Agregar</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>		
-				</div>
-			</div>
-		
-	</section>
-	<!-- Page section end -->
-	
-	<!-- Page section -->
-	<section class="page-section spad contact-page">
-		<div class="container">	
-			<div class="row">
-				<div class="col-md-12">
-					<div class="contact-form-warp">
-						<h4 class="comment-title text-cente">Promocion</h4>
-						<form class="comment-form">
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" placeholder="Name"/>
-								</div>
-								<div class="col-md-6">
-									<input type="email" placeholder="Email"/>
-								</div>
-								<div class="col-lg-12">
-									<input type="text" placeholder="Subject"/>
-									<textarea placeholder="Message"></textarea>
-									<button class="btn btn-lg btn-success">Agregar</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>	
-	
-				</div>
-			</div>
-		
-	</section>
-	<!-- Page section end -->
-	<div class="row justify-content-center">
-		<div id="success_tic" class="modal fade" role="dialog"
-							ref="success_tic">
-				<div class="modal-dialog">
-								<!-- Modal content-->
-								<div class="modal-content">
-									<a class="close" href="#" data-dismiss="modal"></a>
-									<div class="page-body">
-										<div class="head">
-											<h3 style="margin-top: 5px;">Registro</h3>
-											<h4>Se realizo la accion Correctamente</h4>
-										</div>
-										<h1 style="text-align: center;">
-											<div class="checkmark-circle">
-												<div class="background"></div>
-												<div class="checkmark draw"></div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<h:inputHidden id="operacion"
+												value="#{controllerManagedAdmin.codigoOpera}" />
+											<h:inputHidden id="correo"
+												value="#{controllerManagedAdmin.correo}" />
+											<label class="col-md-4 control-label" for="">Cliente</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="usuario"
+													a:placeholder="nombre del cliente"
+													value="#{controllerManagedAdmin.usuario}" required="true" />
 											</div>
-										</h1>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Juego</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="juego"
+													a:placeholder="nombre del juego"
+													value="#{controllerManagedAdmin.juego}" required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Precio</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="vprecio"
+													a:placeholder="0.00"
+													value="#{controllerManagedAdmin.vprecio}" required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Estado</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedAdmin.ventselect}"
+													styleClass="form-control">
+													<f:selectItem itemValue="0" itemLabel="Pendiente" />
+													<f:selectItem itemValue="1" itemLabel="Aprobado" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<h:commandButton styleClass="btn btn-lg btn-success"
+											value="Actualizar"
+											action="#{controllerManagedAdmin.resultado}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render="@form"
+												onevent="function(data) { if (data.status === 'success') { 
+ setTimeout(function(){ location.reload()  }, 1000);  } }" />
+										</h:commandButton>
+									</div>
+
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Page section -->
+
+
+		<!-- Page section -->
+		<section class="page-section spad contact-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="contact-form-warp">
+							<h4 class="comment-title text-center">Fomulario de Portadas
+								Principales</h4>
+							<h:form styleClass="comment-form" id="galeriaform">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Vista</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedGaleria.lstVista}"
+													styleClass="form-control">
+													<f:selectItem itemValue="0" itemLabel="Seleccione" />
+													<f:selectItem itemValue="2" itemLabel="Home" />
+													<f:selectItem itemValue="3" itemLabel="Games" />
+													<f:selectItem itemValue="4" itemLabel="Blog" />
+													<f:selectItem itemValue="5" itemLabel="Foro" />
+													<f:selectItem itemValue="6" itemLabel="Contact" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Video
+												Juego</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedGaleria.lstcodjue}"
+													styleClass="form-control stld" id="SltJuego"
+													data-live-search="true">
+													<f:selectItem itemValue="0" itemLabel="Seleccione" />
+													<c:forEach var="item"
+														items="#{controllerManagedGaleria.juegoSelect}">
+														<f:selectItem itemValue="#{item.codigo}"
+															itemLabel="#{item.titulo}" />
+													</c:forEach>
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<h:commandButton styleClass="btn btn-lg btn-success"
+											value="Actualizar"
+											action="#{controllerManagedGaleria.resultado}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render=":@form" resetValues="true" />
+										</h:commandButton>
+									</div>
+
+								</div>
+							</h:form>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="contact-form-warp">
+							<h4 class="comment-title text-cente text-center">Formulario
+								de Promociones</h4>
+							<h:form styleClass="comment-form" id="promocionform">
+								<div class="row">
+
+									<div class="col-md-12">
+										<label class="col-md-4 control-label" for="">Anuncios
+											Creados</label>
+										<div class="form-group">
+											<select class="selectpicker form-control" id="SltPromocioID"
+												data-live-search="true">
+												<option>--Seleccione--</option>
+												<c:forEach var="item"
+													items="#{controllerManagedPromociones.selectpromoList}">
+													<option value="#{item.codigo}">00000#{item.codigo}
+														- #{item.titulo}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<h:inputHidden id="idPromocion"
+												value="#{controllerManagedPromociones.txtidoperacion}" />
+											<label class="col-md-4 control-label" for="">Video
+												Juego</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedPromociones.selectJuego}"
+													styleClass="form-control stld" id="SltPromocion"
+													data-live-search="true">
+													<f:selectItem itemValue="0" itemLabel="Seleccione" />
+													<c:forEach var="item"
+														items="#{controllerManagedGaleria.juegoSelect}">
+														<f:selectItem itemValue="#{item.codigo}"
+															itemLabel="#{item.titulo}" />
+													</c:forEach>
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Promocion</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="txtpromocion"
+													a:placeholder="promocion"
+													value="#{controllerManagedPromociones.txtpromocion}"
+													required="true" />
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Monto</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="txtmonto"
+													a:placeholder="0.00"
+													value="#{controllerManagedPromociones.txtmonto}"
+													required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Estado</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedPromociones.txtestado}"
+													styleClass="form-control" id="txtestado">
+													<f:selectItem itemValue="0" itemLabel="Ocultar" />
+													<f:selectItem itemValue="1" itemLabel="Publicar" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<h:commandButton styleClass="btn btn-lg btn-primary"
+											value="Registar"
+											action="#{controllerManagedPromociones.insertar}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render="@form"
+												onevent="function(data) { if (data.status === 'success') { 
+ setTimeout(function(){ location.reload()  }, 5000);  } }" />
+										</h:commandButton>
+									</div>
+									<div class="col-md-3">
+										<h:commandButton styleClass="btn btn-lg btn-success"
+											value="Actualizar"
+											action="#{controllerManagedPromociones.actualizar}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render="@form"
+												onevent="function(data) { if (data.status === 'success') { 
+ setTimeout(function(){ location.reload()  }, 5000);  } }" />
+										</h:commandButton>
 									</div>
 								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<!-- Page section end -->
+
+		<!-- Page section -->
+		<section class="page-section spad contact-page">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="contact-form-warp">
+							<h4 class="comment-title text-center">Formulario de Video
+								Juegos</h4>
+							<h:form styleClass="comment-form" id="juegosform"
+								enctype="multipart/form-data">
+								<div class="row">
+
+									<div class="col-md-12">
+										<label class="col-md-4 control-label" for="">Video
+											Juego</label>
+										<div class="form-group">
+											<select class="selectpicker form-control" id="sltJuegoBox"
+												data-live-search="true">
+												<option>--Seleccione--</option>
+												<c:forEach var="item"
+													items="#{controllerManagedGaleria.juegoSelect}">
+													<option value="#{item.codigo}">#{item.titulo}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+
+
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Titulo</label>
+											<div class="col-md-12">
+												<h:inputHidden id="txtJidjuego"
+													value="#{controllerManagedPromociones.txtJidjuego}" />
+												<h:inputText styleClass="form-control" id="txtJtitulo"
+													a:placeholder="titulo"
+													value="#{controllerManagedPromociones.txtJtitulo}"
+													required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Descripcion</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="txtJdescripcion"
+													a:placeholder="descripcion"
+													value="#{controllerManagedPromociones.txtJdescripcion}"
+													required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Categoria</label>
+											<div class="col-md-12">
+												<h:selectOneMenu
+													value="#{controllerManagedPromociones.txtJcategoria}"
+													styleClass="form-control" id="txtJcategoria">
+													<f:selectItem itemValue="0" itemLabel="--Seleccione--" />
+													<f:selectItem itemValue="1" itemLabel="Aventura" />
+													<f:selectItem itemValue="2" itemLabel="Accion" />
+													<f:selectItem itemValue="3" itemLabel="Peleas" />
+													<f:selectItem itemValue="4" itemLabel="Carreras" />
+												</h:selectOneMenu>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Observacion</label>
+											<div class="col-md-12">
+												<h:inputTextarea cols="4" rows="4" styleClass="form-control"
+													a:placeholder="Ingrese los comentarios ..."
+													value="#{controllerManagedPromociones.txtJcomentario}"
+													id="txtJcomentario" required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<div class="col-md-12">
+												<h:selectBooleanCheckbox
+													value="#{controllerManagedPromociones.txtJCheck}"
+													id="txtJCheck" styleClass="form-check-input" />
+												<label class="col-md-4 control-label"
+													for="juegosform:txtJCheck">Envio de imagen</label>
+											</div>
+
+											<div class="col-md-12">
+												<h:inputFile styleClass="form-control-file" id="txtJImangen"
+													value="#{controllerManagedPromociones.txtJImangen}"
+													alt="cargando imagen">
+												</h:inputFile>
+											</div>
+
+										</div>
+									</div>
+
+
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="">Precio</label>
+											<div class="col-md-12">
+												<h:inputText styleClass="form-control" id="txtJprecio"
+													a:placeholder="0.00"
+													value="#{controllerManagedPromociones.txtJprecio}"
+													required="true" />
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<h:commandButton styleClass="btn btn-lg btn-primary"
+											value="Registar"
+											action="#{controllerManagedPromociones.insertarJuego}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render="@form"
+												onevent="function(data) { if (data.status === 'success') { 
+ setTimeout(function(){ location.reload()  }, 5000);  } }" />
+										</h:commandButton>
+									</div>
+									<div class="col-md-3">
+										<h:commandButton styleClass="btn btn-lg btn-success"
+											value="Actualizar"
+											action="#{controllerManagedPromociones.actualizarJuego}"
+											onclick="$('#success_tic').modal('show');">
+											<f:ajax execute="@form" render="@form"
+												onevent="function(data) { if (data.status === 'success') { 
+ setTimeout(function(){ location.reload()  }, 5000);  } }" />
+										</h:commandButton>
+									</div>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<!-- Page section end -->
+		<div class="row justify-content-center">
+			<div id="success_tic" class="modal fade" role="dialog"
+				ref="success_tic">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<a class="close" href="#" data-dismiss="modal"></a>
+						<div class="page-body">
+							<div class="head">
+								<h3 style="margin-top: 5px;">Registro</h3>
+								<h4>Se realizo la accion Correctamente</h4>
+							</div>
+							<h1 style="text-align: center;">
+								<div class="checkmark-circle">
+									<div class="background"></div>
+									<div class="checkmark draw"></div>
+								</div>
+							</h1>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-</ui:define>
+	</ui:define>
 </ui:composition>

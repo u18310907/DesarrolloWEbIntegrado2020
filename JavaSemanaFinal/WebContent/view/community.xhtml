@@ -5,7 +5,7 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:c="http://java.sun.com/jsp/jstl/core"
     xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-        >
+    >
     
      <ui:define name="content">
 
@@ -16,7 +16,7 @@
 			<div class="news-ticker-contant">
 				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
 					<div class="nt-item">
-						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion}  #{item.descuento}%
 					</div>
 				</ui:repeat>
 			</div>

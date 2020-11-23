@@ -1,4 +1,12 @@
+$('#SltVenta').selectpicker({
+    size: 6
+ });
 
+$('.stld').selectpicker({
+    size: 6,
+    liveSearch: true
+
+ });
 
 function setRegistrarUsuario(){
 	var formDataS = new FormData(document.getElementById("FormDataEnvio"))
@@ -29,28 +37,23 @@ function setFCLogin(){
             contentType: false,
 	     	processData: false
     }).done(function(resp){
-	
-//	   $("#LoginUserDiv").hide();
-	//   $("#UsuarioDiv").append("<a >"+resp["usuario"]+"</a>");
-			location.reload();
-	  // console.log(resp+" asa" + resp["usuario"]);
-		//	$("#success_tic").modal('show');		
-	
+			location.reload();	
     });
   }
 
 function setListaDeseos(codigo){
-	
-	$.ajax({
+	         $.ajax({
           	type: 'POST',
        		url: '../ListaDeseos',
             dataType : 'json',
             data: 'codjue='+codigo,
+           // cache: false,
+           // contentType: false,
+	      //  processData: false
     }).done(function(resp){
-			//console.log("raro");
+	 //  console.log(resp);
     });
-	$('#success_tic').modal('show');
-}
+  }
 
 var values;
 function getModalById(codigo){
@@ -72,7 +75,6 @@ $.ajax({
 
 
 function SendVenta(){
-	//console.log(values);
 	var formData = new FormData();
 	formData.append('codjue',values[0]["codjue"]);
 	formData.append('precio',values[0]["precio"]);
@@ -94,6 +96,7 @@ function SendVenta(){
 }
 
 
+
 $(document).ready(function () {
 
 $('#SltVenta').change(function(){
@@ -111,7 +114,6 @@ $.ajax({
 	document.getElementById('ventasform:juego').value=resp[0]["titulo"]; 
 	document.getElementById('ventasform:vprecio').value=resp[0]["precio"]; 
 	document.getElementById('ventasform:correo').value=resp[0]["correo"]; 
-
  });
 
 });
@@ -132,8 +134,46 @@ $.ajax({
 	document.getElementById('promocionform:SltPromocion').value=resp[0]["codjue"]; 
 	document.getElementById('promocionform:SltPromocion').text=resp[0]["titulo"]; 
 	document.getElementById('promocionform:txtestado').value=resp[0]["estado"]; 
+	
+	//document.getElementById('ventasform:juego').value=resp[0]["titulo"]; 
+	//document.getElementById('ventasform:vprecio').value=resp[0]["precio"]; 
+	//document.getElementById('ventasform:correo').value=resp[0]["correo"]; 
+
+	//	$('#vtitulo').val(resp[0]["titulo"]);
+	//	$('#vdescripcion').val(resp[0]["descripcion"]);
+	//	$('#vprecio').val(resp[0]["precio"]);
+	//	$('#vimagename').attr("src","../../resources/img/review/"+resp[0]["ImagenName"]);	
+	//  console.log(resp);
+	//	values=resp;
+ });
+});
+
+
+
+$('#sltJuegoBox').change(function(){
+var codigoS=$('#sltJuegoBox option:selected').val();
+$.ajax({
+          	type: 'POST',
+       		url: '../JuegosAdmin',
+            dataType : 'json',
+            data: 'codigoSelected='+codigoS,
+	//		async:false,
+    }).done(function(resp){
+	console.log(resp);
+	document.getElementById('juegosform:txtJidjuego').value=resp[0]["codigo"]; 
+	document.getElementById('juegosform:txtJtitulo').value=resp[0]["titulo"]; 
+	document.getElementById('juegosform:txtJdescripcion').value=resp[0]["descripcion"]; 
+	document.getElementById('juegosform:txtJcategoria').value=resp[0]["categoria_id"]; 
+	document.getElementById('juegosform:txtJcomentario').value=resp[0]["observacion"]; 
+	document.getElementById('juegosform:txtJprecio').value=resp[0]["precio"]; 
+	//  console.log(resp);
+
 
  });
- });
+});
+
+
 
 });
+
+

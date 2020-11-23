@@ -26,8 +26,6 @@ public class listaDeseosDB {
 	private Integer codigo;
 	private Integer codjue;
 	private Integer codusu;
-	private Integer estado;
-	private String fecha;
 	private String titulo;
 	private String descripcion;
 	private Double precio;

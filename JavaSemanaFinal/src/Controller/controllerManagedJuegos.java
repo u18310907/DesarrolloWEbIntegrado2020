@@ -1,9 +1,7 @@
 package Controller;
 import java.util.ArrayList;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import Database.juegosDB;
 import Model.Juegos;
 
@@ -34,6 +32,23 @@ public class controllerManagedJuegos {
 		 return juegoList;
 	}
 	
+	
+	public ArrayList<Juegos> getjuegoVenta(){
+		 ArrayList<Juegos> juegoList = new ArrayList<Juegos>();
+		 gamesDB= new juegosDB();
+		 juegoList= gamesDB.leerVentasJuegos();
+		 return juegoList;
+	}
+	
+	public ArrayList<Juegos> getjuegoVentaPrecio(){
+		 ArrayList<Juegos> juegoList = new ArrayList<Juegos>();
+		 gamesDB= new juegosDB();
+		 juegoList= gamesDB.leerVentasPrecio();
+		 return juegoList;
+	}
+	
+	
+	
 
 	
 	public ArrayList<Juegos> gettopList(){
@@ -42,6 +57,8 @@ public class controllerManagedJuegos {
 		 topList= gamesDB.leerUltimos();
 		 return topList;
 	}
+	
+	
 	
 	
 	public ArrayList<Juegos> gettopCosto(){

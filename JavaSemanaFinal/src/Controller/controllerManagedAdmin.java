@@ -29,13 +29,14 @@ public class controllerManagedAdmin implements Serializable{
 	private Double precio;
 	private listaVentaDB listaDesDB;
 	private String imagenName;
-	
 	private String usuario;
 	private String juego;
 	private String vprecio;
 	private String ventselect;
 	private String codigoOpera;
 	private String correo;
+	
+
 
 	private static ArrayList<ListDeseos> listDeseo;
 
@@ -231,6 +232,10 @@ public class controllerManagedAdmin implements Serializable{
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
+
+
+	
 
 	
 }

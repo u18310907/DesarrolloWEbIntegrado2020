@@ -3,11 +3,8 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import Database.comentariosDB;
-import Database.juegosDB;
 import Model.Comentarios;
-import Model.Juegos;
 
 @ManagedBean(name = "controllerManagedComentario")
 @SessionScoped

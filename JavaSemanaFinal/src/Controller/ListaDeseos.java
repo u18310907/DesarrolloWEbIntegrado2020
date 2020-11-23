@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import Database.listaDeseosDB;
 import Model.ListDeseos;
 
@@ -57,20 +57,20 @@ public class ListaDeseos extends HttpServlet {
 			ld.setCodjue(Integer.parseInt(codjue));
 			ld.setCodusu(Integer.parseInt(coduser));
 			ld.setEstado(0);
-			ld.setFecha(fecha);
-			System.out.println("ok");
+			ld.setFecha(fecha);			
 			listaDeseosDB ldb=new listaDeseosDB();
 			try {
 				ldb.RegistrarLista(ld);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+			String json=" ";
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			out.print(json);
+			out.flush();		
 		}
-	
-				
-		
-
 	}
 
 }

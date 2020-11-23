@@ -16,7 +16,7 @@
 			<div class="news-ticker-contant">
 				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
 					<div class="nt-item">
-						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion}  #{item.descuento}%
 					</div>
 				</ui:repeat>
 			</div>
@@ -60,9 +60,9 @@
 									<div class="rgi-content">
 										<h5> #{item.titulo}</h5>
 										<p>#{item.descripcion}.</p>
-										<a href="#" class="comment">3 Comments</a>
+										<a href="#" class="comment">        Click Here </a>
 										<div class="rgi-extra">
-											<a href="#" class="btn" role="button" onclick="setListaDeseos(#{item.codigo})"><img src="../../resources/img/icons/okeyMF.png" alt="" width="40px" height="40px"/></a>
+											<button  class="btn"  onclick="setListaDeseos(#{item.codigo})"><img src="../../resources/img/icons/okeyMF.png" alt="----" width="40px" height="40px"/></button>
 										</div>
 									</div>
 								</div>							
@@ -133,7 +133,7 @@
 						<div class="review-item">
 							<div class="review-cover set-bg"
 								data-setbg="../../resources/img/dynamic/#{item.imagenName}">
-								<div class="score yellow">9.3</div>
+								<div class="score yellow">#{item.precio}</div>
 							</div>
 							<div class="review-text">
 								<h5>#{item.titulo}</h5>
@@ -147,5 +147,29 @@
 		</div>
 	</section>
 	<!-- Page section end -->
+		<div class="row justify-content-center">
+			<div id="success_tic" class="modal fade" role="dialog"
+				ref="success_tic">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<a class="close" href="#" data-dismiss="modal"></a>
+						<div class="page-body">
+							<div class="head">
+								<h3 style="margin-top: 5px;">Registro</h3>
+								<h4>Se realizo la accion Correctamente</h4>
+							</div>
+							<h1 style="text-align: center;">
+								<div class="checkmark-circle">
+									<div class="background"></div>
+									<div class="checkmark draw"></div>
+								</div>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 </ui:define>
 </ui:composition>

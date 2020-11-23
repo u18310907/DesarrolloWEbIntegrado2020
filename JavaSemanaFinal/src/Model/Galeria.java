@@ -8,6 +8,12 @@ public class Galeria {
 	private String descripcion;
 	private String imagenName;
 	private Integer estado;
+	
+	
+	public Galeria() {
+		
+		
+	}
 	public Galeria(Integer codigo, Integer codjue, String titulo, String descripcion, String imagenName,
 			Integer estado) {
 		this.codigo = codigo;

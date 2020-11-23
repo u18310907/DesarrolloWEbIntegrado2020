@@ -1,10 +1,13 @@
 package Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Model.Foro;
 import Model.Galeria;
 
 
@@ -51,6 +54,28 @@ public class galeriaDB {
 		}
 	}
 	
+	
+	public String ActualizarVista(Galeria gl) throws SQLException {
+		String data;
+		try {
+					
+			ConexionDB conectaBD = new ConexionDB();
+			Connection con = conectaBD.conectar();
+			String query = "UPDATE galeria SET codjue=? WHERE codigo=?";
+			System.out.println(query);
+			PreparedStatement stmt = con.prepareStatement(query);			
+			stmt.setInt(1,gl.getCodjue());
+			stmt.setInt(2,gl.getCodigo());
+			stmt.executeUpdate();
+			data = "success";
+		
+		} catch (Exception e) {
+				//e.printStackTrace();
+			data = "fail";
+		}
+		//conexion.close();
+		return data;
+	}
 	
 
 

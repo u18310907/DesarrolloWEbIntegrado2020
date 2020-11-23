@@ -7,12 +7,33 @@ public class Promocion {
 	private String titulo;
 	private String descripcion;
 	private Double descuento;
+	private String estado;
+	
+	public Promocion() {
+		
+	}
+	
+	public Promocion(Integer codigo, Integer codjue, String titulo) {
+		this.codigo = codigo;
+		this.codjue = codjue;
+		this.titulo = titulo;
+	}
+	
 	public Promocion(Integer codigo, Integer codjue, String titulo, String descripcion, Double descuento) {
 		this.codigo = codigo;
 		this.codjue = codjue;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.descuento = descuento;
+	}
+	
+	public Promocion(Integer codigo, Integer codjue, String titulo, String descripcion, Double descuento, String estado) {
+		this.codigo = codigo;
+		this.codjue = codjue;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.descuento = descuento;
+		this.estado=estado;
 	}
 	public Integer getCodigo() {
 		return codigo;
@@ -44,6 +65,16 @@ public class Promocion {
 	public void setDescuento(Double descuento) {
 		this.descuento = descuento;
 	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 	
 	
 	

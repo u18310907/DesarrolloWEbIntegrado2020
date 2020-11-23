@@ -13,8 +13,9 @@ public class Juegos {
 	private Double precio;
 	
 	
-	
+	public Juegos(){}
 
+	
 	public Juegos(Integer codigo, String titulo, String descripcion, String nombre, String observacion,
 			String imagenName) {
 		this.codigo = codigo;
@@ -23,6 +24,17 @@ public class Juegos {
 		this.nombre = nombre;
 		this.observacion = observacion;
 		this.imagenName = imagenName;
+	}
+	
+	public Juegos(Integer codigo, String titulo, String descripcion, String nombre, String observacion,
+			String imagenName, double precio) {
+		this.codigo = codigo;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.nombre = nombre;
+		this.observacion = observacion;
+		this.imagenName = imagenName;
+		this.precio=precio;
 	}
 	
 

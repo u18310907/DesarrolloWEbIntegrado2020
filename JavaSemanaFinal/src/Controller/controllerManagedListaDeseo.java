@@ -4,13 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
-
 import Database.listaDeseosDB;
 import Model.ListDeseos;
 
@@ -51,8 +47,7 @@ public class controllerManagedListaDeseo implements Serializable{
 		String coduser = (String)  facesContext.getExternalContext().getSessionMap().get("coduser");
 		//FacesContext.getExternalContext.getSessionMap().get("coduser");
 		//String coduser;
-		listaDesDB=new listaDeseosDB();
-		
+		listaDesDB=new listaDeseosDB();		
 		//if(coduser!=null) {
 			//String coduser= (String) session.getAttribute("coduser");
 			if(coduser!=null) {
@@ -72,7 +67,6 @@ public class controllerManagedListaDeseo implements Serializable{
 		//	listDeseo = listaDesDB.leerListaDeseos(2,fecha);
 		//}
 		
-
 	}
 
 	public Integer getCodigo() {

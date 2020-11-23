@@ -19,7 +19,7 @@
 			<div class="news-ticker-contant">
 				<ui:repeat value="#{controllerManagedPromociones.promoList}" var="item" varStatus="loop">
 					<div class="nt-item">
-						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion} con un descuento de #{item.descuento}%
+						<span class="#{item.codigo == 1 ? 'new' : 'racing'}">#{item.titulo}</span>#{item.descripcion}  #{item.descuento}%
 					</div>
 				</ui:repeat>
 			</div>
@@ -59,7 +59,7 @@
 				<c:forEach id="userSearchResults" var="item" items="#{controllerManagedListaDeseo.listDeseo}" >
 				<div class="col-md-6">
 					<div class="review-item">
-						<div class="review-cover set-bg" data-setbg="../../resources/img/review/#{item.imagenName}">
+						<div class="review-cover set-bg" data-setbg="../../resources/img/dynamic/#{item.imagenName}">
 							<div class="score yellow">#{item.precio}</div>
 						</div>
 						<div class="review-text">

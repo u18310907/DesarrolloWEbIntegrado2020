@@ -1,24 +1,18 @@
 package Controller;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ComponentSystemEvent;
-import javax.servlet.http.HttpServletRequest;
-
 import Database.galeriaDB;
 import Database.juegosDB;
 import Model.Galeria;
 import Model.Juegos;
 
 @ManagedBean(name = "controllerManagedGaleria")
+@RequestScoped
 @SessionScoped
 public class controllerManagedGaleria implements Serializable{
 
@@ -31,6 +25,14 @@ public class controllerManagedGaleria implements Serializable{
 	private Integer estado;
 	private galeriaDB galeDB;
 
+	// Lista
+	private String lstVista;
+	private String lstcodjue;
+	private String lstTitulo;
+	private juegosDB gamesDB;
+
+	
+	
 	//private static ArrayList<Galeria> galeListBlog;
 		
 	public controllerManagedGaleria() {
@@ -56,6 +58,28 @@ public class controllerManagedGaleria implements Serializable{
 
 	}
 	
+	
+	public void resultado() {
+		Galeria gl=new Galeria();
+		gl.setCodigo(Integer.parseInt(lstVista));
+		gl.setCodjue(Integer.parseInt(lstcodjue));
+		 galeDB= new galeriaDB();
+		 try {
+			String respawn=galeDB.ActualizarVista(gl);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public ArrayList<Juegos> getjuegoSelect(){
+		 ArrayList<Juegos> juegoSelect = new ArrayList<Juegos>();
+		 gamesDB= new juegosDB();
+		 juegoSelect= gamesDB.ALLGames();
+		 return juegoSelect;
+	}
+	
+	
 	public ArrayList<Galeria> getgaleListBlog(){
 		String view="Blog";
 		 ArrayList<Galeria> galeListBlog = new ArrayList<Galeria>();
@@ -80,6 +104,22 @@ public class controllerManagedGaleria implements Serializable{
 		 galeDB= new galeriaDB();
 		 galeListBlog= galeDB.leerGaleria(view);
 		 return galeListBlog;
+	}
+	
+	public ArrayList<Galeria> getgaleListContact(){
+		 String view="Conctact";
+		 ArrayList<Galeria> galeListContact = new ArrayList<Galeria>();
+		 galeDB= new galeriaDB();
+		 galeListContact= galeDB.leerGaleria(view);
+		 return galeListContact;
+	}
+	
+	public ArrayList<Galeria> getgaleListHome(){
+		 String view="Home";
+		 ArrayList<Galeria> galeListContact = new ArrayList<Galeria>();
+		 galeDB= new galeriaDB();
+		 galeListContact= galeDB.leerGaleria(view);
+		 return galeListContact;
 	}
 	
 	public ArrayList<Galeria> getgaleListAdmin(){
@@ -120,6 +160,35 @@ public class controllerManagedGaleria implements Serializable{
 		return galeDB;
 	}
 
+	public String getLstVista() {
+		return lstVista;
+	}
 
+
+	public void setLstVista(String lstVista) {
+		this.lstVista = lstVista;
+	}
+
+	public String getLstcodjue() {
+		return lstcodjue;
+	}
+
+	public void setLstcodjue(String lstcodjue) {
+		this.lstcodjue = lstcodjue;
+	}
+
+	public String getLstTitulo() {
+		return lstTitulo;
+	}
+
+	public void setLstTitulo(String lstTitulo) {
+		this.lstTitulo = lstTitulo;
+	}
+	public juegosDB getGamesDB() {
+		return gamesDB;
+	}
+	
+	
+	
 
 }
